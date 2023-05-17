@@ -18,19 +18,34 @@ Since : 2023.05.16 ~
 object : Study & Practice
 Language : Dart
 ```
+- example unit test in toonflix/lib
+### [Flutter?](https://astrum93.tistory.com/79)
+### [Set Flutter](https://astrum93.tistory.com/79)
+### [My Flutter error](https://astrum93.tistory.com/79)
 
 ---
 <br>
 
 ```
 Developer : NA
-Date : 2023.05.16
-file : 
-subject :  
+Date : 2023.05.17
+file : 20230517_practice1.dart
+subject : Print "Hello world!" & Widget
+
 ```
 
-- 
-- 
-- 
-- 
--
+### [Blog Posting Here](https://astrum93.tistory.com/79)
+
+- create project
+- Hello World
+- runApp()
+- Widget
+- StatelessWidget
+- build()
+- material & cupertino
+- Scaffold()
+- body()
+- AppBar()
+- Center()
+
+---
