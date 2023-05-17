@@ -19,9 +19,9 @@ object : Study & Practice
 Language : Dart
 ```
 - example unit test in toonflix/lib
-### [Flutter?](https://astrum93.tistory.com/79)
-### [Set Flutter](https://astrum93.tistory.com/79)
-### [My Flutter error](https://astrum93.tistory.com/79)
+### [Flutter?](https://astrum93.tistory.com/76)
+### [Set Flutter](https://astrum93.tistory.com/77)
+### [My Flutter error](https://astrum93.tistory.com/78)
 
 ---
 <br>
