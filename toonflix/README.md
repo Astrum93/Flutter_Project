@@ -1,16 +1,36 @@
-# toonflix
+## 🫡 Flutter_1Day 3Hour Project 
 
-A new Flutter project.
+### 🎨 toonflix
 
-## Getting Started
+<br>
+<div align = center>
+  
+![image](https://github.com/Astrum93/Flutter_Project/assets/116700688/9242090d-9f2c-4463-8843-5aa05e3cde1a)
 
-This project is a starting point for a Flutter application.
+</div>
+<br>
+<hr>
 
-A few resources to get you started if this is your first Flutter project:
+### ⭐Start 
+```
+Developer : NA
+Since : 2023.05.16 ~
+object : Study & Practice
+Language : Dart
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
+<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+Developer : NA
+Date : 2023.05.16
+file : 
+subject :  
+```
+
+- 
+- 
+- 
+- 
+-
