@@ -1,4 +1,4 @@
-## 🫡 Flutter_1Day 3Hour Project 
+## 🫡 Flutter_1Day 3Hour Project
 
 ### 🎨 toonflix
 
@@ -11,16 +11,21 @@
 <br>
 <hr>
 
-### ⭐Start 
+### ⭐Start
+
 ```
 Developer : NA
 Since : 2023.05.16 ~
 object : Study & Practice
 Language : Dart
 ```
+
 - example unit test in toonflix/lib
+
 ### [Flutter?](https://astrum93.tistory.com/76)
+
 ### [Set Flutter](https://astrum93.tistory.com/77)
+
 ### [My Flutter error](https://astrum93.tistory.com/78)
 
 ---
@@ -66,9 +71,28 @@ subject : Header
 - TextStyle
 - SizedBox
 - Alignment (정렬)
-    - MainAxisAlignment
-    - CrossAxisAlignment
-    - Column Alignment
+  - MainAxisAlignment
+  - CrossAxisAlignment
+  - Column Alignment
 - Font Size,Weight
 - withOpacity
 - Padding
+
+---
+<br>
+
+```
+Developer : NA
+Date : 2023.05.19
+file : 20230519_practice3.dart
+subject : Button Section
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/81)
+
+- Container
+- BorderRadius
+- VScode Settings
+  - Constance
+  - PreviewFlutterUIGuides
