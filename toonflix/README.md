@@ -49,3 +49,26 @@ subject : Print "Hello world!" & Widget
 - Center()
 
 ---
+<br>
+
+```
+Developer : NA
+Date : 2023.05.18
+file : 20230518_practice2.dart
+subject : Header
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/80)
+
+- Background Color
+- Column
+- TextStyle
+- SizedBox
+- Alignment (정렬)
+    - MainAxisAlignment
+    - CrossAxisAlignment
+    - Column Alignment
+- Font Size,Weight
+- withOpacity
+- Padding
