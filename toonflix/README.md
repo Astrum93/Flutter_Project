@@ -79,6 +79,7 @@ subject : Header
 - Padding
 
 ---
+
 <br>
 
 ```
@@ -96,3 +97,21 @@ subject : Button Section
 - VScode Settings
   - Constance
   - PreviewFlutterUIGuides
+
+<br>
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.20
+file : 20230520_practice4.dart
+subject : Reusable Widgets
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/82)
+
+- Reusable Widgets
