@@ -142,37 +142,59 @@ class App extends StatelessWidget {
 
               // 첫 번째 카드(Container)
               Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xff1f2123),
+                decoration: BoxDecoration(
+                  color: const Color(0xff1f2123),
+                  borderRadius: BorderRadius.circular(25),
                 ),
+
                 // 첫 번째 카드의 요소 Padding
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 10,
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
                   // 첫 번째 카드의 첫 번째 행
                   child: Row(
                     children: [
                       // 첫 번째 행의 첫번째 열
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // 첫 번째 행의 첫 번째 열의 Text
-                          Text(
+                          const Text(
                             'Euro',
-                            style: TextStyle(color: Colors.white, fontSize: 32),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           // 첫 번째 행의 첫 번째 열의 SizedBox
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           // 첫 번째 행의 첫 번째 열의 행
                           Row(
                             children: [
                               // 첫 번째 행의 첫 번째 열의 행의 첫 번째 Text
-                              Text('6428'),
+                              const Text(
+                                '6 428',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+
+                              // 첫 번째 행의 첫 번째 열의 행의 SizedBox
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              
                               // 첫 번째 행의 첫 번째 열의 행의 두 번째 Text
-                              Text('EUR'),
+                              Text(
+                                'EUR',
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.8),
+                                  fontSize: 20,
+                                ),
+                              ),
                             ],
                           ),
                         ],
