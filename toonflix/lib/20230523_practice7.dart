@@ -16,6 +16,12 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   int counter = 0;
 
+  void onClicked() {
+    setState(() {
+      counter += 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,8 +31,26 @@ class _AppState extends State<App> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Click Count'),
-              Text('$counter'),
+              // 첫 번째 열의 첫 번째 Text
+              const Text(
+                'Click Count',
+                style: TextStyle(fontSize: 30),
+              ),
+
+              // 첫 번째 열의 두 번째 Text
+              Text(
+                '$counter',
+                style: const TextStyle(fontSize: 30),
+              ),
+
+              // 첫 번째 열의 IconButton
+              IconButton(
+                iconSize: 40,
+                onPressed: onClicked,
+                icon: const Icon(
+                  Icons.add_box_rounded,
+                ),
+              ),
             ],
           ),
         ),
