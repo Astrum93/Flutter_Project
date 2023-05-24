@@ -40,6 +40,7 @@ subject : Print "Hello world!" & Widget
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/79)
+<br>
 
 - create project
 - Hello World
@@ -65,6 +66,7 @@ subject : Header
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/80)
+<br>
 
 - Background Color
 - Column
@@ -91,6 +93,7 @@ subject : Button Section
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/81)
+<br>
 
 - Container
 - BorderRadius
@@ -113,6 +116,7 @@ subject : Reusable Widgets
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/82)
+<br>
 
 - Reusable Widgets
 
@@ -131,6 +135,7 @@ subject : Cards
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/83)
+<br>
 
 - Create Card from Container
 
@@ -149,6 +154,7 @@ subject : Icons & Transforms & Reusable Card
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/84)
+<br>
 
 - Icons
 - Transform
@@ -172,7 +178,33 @@ subject : Stateful Widget
 ```
 
 ### [Blog Posting Here](https://astrum93.tistory.com/85)
+<br>
 
 - Create Stateful Widget
 - Icon Button
 - setState Function
+
+
+<br>
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.24
+file : 20230524_practice8.dart
+subject : Build Context
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/86)
+<br>
+
+- Theme
+- Widget Tree
+- Build Context
+- Widget Lifecycle
+  - initState()
+  - dispose()
