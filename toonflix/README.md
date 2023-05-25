@@ -215,3 +215,24 @@ subject : Build Context
 - Widget Lifecycle
   - initState()
   - dispose()
+
+<br>
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.25
+file : 20230525_pomodoro1.dart, home_screen.dart
+subject : User Interface
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/87)
+
+<br>
+
+- Flexible
+- Expanded
