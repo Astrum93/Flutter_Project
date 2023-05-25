@@ -113,7 +113,7 @@ subject : Button Section
 ```
 Developer : NA
 Date : 2023.05.20
-file : 20230520_Financial Mobile App3.dart
+file : 20230520_Financial Mobile App3.dart, button.dart
 subject : Reusable Widgets
 
 ```
@@ -236,3 +236,26 @@ subject : User Interface
 
 - Flexible
 - Expanded
+
+
+<br>
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.26
+file : home_screen.dart upgrade
+subject : Timer
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/88)
+
+<br>
+
+- Timer
+- Undefined class 'Timer'
+- Duration
