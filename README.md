@@ -14,7 +14,9 @@ Language : Dart
 
 ## 🎨 Toonflix Project
 
-<br>
+- Financial Mobile App Practice
+- Pomodoro Timer App Practice
+
 <br>
 
 ---
