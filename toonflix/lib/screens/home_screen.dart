@@ -9,17 +9,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // 25분을 의미하는 변수
+  static const twentyFiveMinutes = 1500;
+
   // 시간
-  int totalSeconds = 1500;
+  int totalSeconds = twentyFiveMinutes;
+
+  // 일시정지 조건 변수
+  bool isRunning = false;
 
   // Dart의 표준 라이브러리 Timer 선언
   late Timer timer;
 
+  // Total Pomodoros
+  int totalPomodoros = 0;
+
+  ////////////////////////////////////////////////////////////////////
+
   // Timer의 Duration이 실행 시킬 함수
   void onTick(Timer timer) {
-    setState(() {
-      totalSeconds = totalSeconds - 1;
-    });
+    if (totalSeconds == 0) {
+      setState(() {
+        totalPomodoros = totalPomodoros + 1;
+        isRunning = false;
+        totalSeconds = twentyFiveMinutes;
+      });
+    } else {
+      setState(() {
+        totalSeconds = totalSeconds - 1;
+      });
+    }
   }
 
   // Timer가 실행될 함수
@@ -28,6 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
       const Duration(seconds: 1),
       onTick,
     );
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  // Timer를 멈추는 함수
+  void onPausePressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
+  }
+
+  // 초 단위를 분 단위로 바꿔주는 함수
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    return duration.toString().split(".").first.substring(2, 7);
   }
 
   @override
@@ -44,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '$totalSeconds',
+                format(totalSeconds),
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: 89,
@@ -61,8 +97,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: IconButton(
                 iconSize: 120,
                 color: Theme.of(context).cardColor,
-                onPressed: onStartPressed,
-                icon: const Icon(Icons.play_circle_outline),
+                onPressed: isRunning ? onPausePressed : onStartPressed,
+                icon: Icon(isRunning
+                    ? Icons.pause_circle_outline
+                    : Icons.play_circle_outline),
               ),
             ),
           ),
@@ -98,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         // Container의 첫 번째 열의 두 번째 Text
                         Text(
-                          '0',
+                          '$totalPomodoros',
                           style: TextStyle(
                             fontSize: 58,
                             fontWeight: FontWeight.w600,

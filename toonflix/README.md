@@ -237,7 +237,6 @@ subject : User Interface
 - Flexible
 - Expanded
 
-
 <br>
 
 ---
@@ -259,3 +258,29 @@ subject : Timer
 - Timer
 - Undefined class 'Timer'
 - Duration
+
+<br>
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.27
+file : home_screen.dart upgrade
+subject : Pause Play & Date Format
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/89)
+
+<br>
+
+- Pause Play
+- Date Format
+- Duration
+- toString()
+- split()
+- first
+- substring()
