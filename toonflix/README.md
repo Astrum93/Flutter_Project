@@ -305,3 +305,28 @@ subject : AppBar
 - Key
 - foregroundColor
 - elevation
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.29
+file : 20230526_Toonflix.dart & Toonflix_api_service.dart
+subject : Data Fetching
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/91)
+
+<br>
+
+- http 패키지 설치
+- pubspec.yaml
+- get()
+- Future
+- async programming
+- asynchronous function
+- await
+- side effect
