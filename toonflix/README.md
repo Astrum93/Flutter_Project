@@ -225,7 +225,7 @@ subject : Build Context
 ```
 Developer : NA
 Date : 2023.05.25
-file : 20230525_pomodoro.dart, home_screen.dart
+file : 20230525_pomodoro.dart, Pomodoro_home_screen.dart
 subject : User Interface
 
 ```
@@ -246,7 +246,7 @@ subject : User Interface
 ```
 Developer : NA
 Date : 2023.05.26
-file : home_screen.dart upgrade
+file : Pomodoro_home_screen.dart upgrade
 subject : Timer
 
 ```
@@ -268,7 +268,7 @@ subject : Timer
 ```
 Developer : NA
 Date : 2023.05.27
-file : home_screen.dart upgrade
+file : Pomodoro_home_screen.dart upgrade
 subject : Pause Play & Date Format
 
 ```
@@ -284,3 +284,24 @@ subject : Pause Play & Date Format
 - split()
 - first
 - substring()
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.28
+file : 20230526_Toonflix.dart & Toonflix_home_screen.dart
+subject : AppBar
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/90)
+
+<br>
+
+- AppBar
+- Key
+- foregroundColor
+- elevation
