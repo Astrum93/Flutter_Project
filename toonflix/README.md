@@ -225,7 +225,7 @@ subject : Build Context
 ```
 Developer : NA
 Date : 2023.05.25
-file : 20230525_pomodoro1.dart, home_screen.dart
+file : 20230525_pomodoro.dart, home_screen.dart
 subject : User Interface
 
 ```
