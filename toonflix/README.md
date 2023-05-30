@@ -330,3 +330,23 @@ subject : Data Fetching
 - asynchronous function
 - await
 - side effect
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.30
+file : Toonflix_api_service.dart & webtoon_model.dart
+subject : From Json
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/92)
+
+<br>
+
+- From Json Data
+- jsonDecode
+- Named Constructor from Json
