@@ -292,7 +292,7 @@ subject : Pause Play & Date Format
 ```
 Developer : NA
 Date : 2023.05.28
-file : 20230526_Toonflix.dart & Toonflix_home_screen.dart
+file : 20230526_Toonflix.dart & Toonflix_home_screen1.dart
 subject : AppBar
 
 ```
@@ -350,3 +350,25 @@ subject : From Json
 - From Json Data
 - jsonDecode
 - Named Constructor from Json
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.05.31
+file : 20230526_Toonflix.dart & Toonflix_home_screen.dart
+subject : waitForWebToons
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/93)
+
+<br>
+
+- Show our API data in App
+- Static
+- Future 타입의 데이터를 가져오는 첫 번째 방법
+- Future 타입의 데이터를 가져오는 두 번째 방법
+- FutureBuilder
