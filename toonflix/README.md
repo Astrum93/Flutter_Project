@@ -358,7 +358,7 @@ subject : From Json
 ```
 Developer : NA
 Date : 2023.05.31
-file : 20230526_Toonflix.dart & Toonflix_home_screen.dart
+file : 20230526_Toonflix.dart & Toonflix_home_screen.dart & Toonflix_home_screen1.dart
 subject : waitForWebToons
 
 ```
@@ -372,3 +372,23 @@ subject : waitForWebToons
 - Future 타입의 데이터를 가져오는 첫 번째 방법
 - Future 타입의 데이터를 가져오는 두 번째 방법
 - FutureBuilder
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.01
+file : Toonflix_home_screen.dart
+subject : ListView
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/94)
+
+<br>
+
+- ListView
+- ListView.builder
+- ListView.separated
