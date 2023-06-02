@@ -392,3 +392,28 @@ subject : ListView
 - ListView
 - ListView.builder
 - ListView.separated
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.02
+file : Toonflix_home_screen.dart
+subject : Webtoon Card
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/95)
+
+<br>
+
+- Webtoon Card
+- Expanded
+- Image.network
+- userAgent
+- Container Decorate
+  - clipBehavior
+  - BorderRadius
+  - Padding

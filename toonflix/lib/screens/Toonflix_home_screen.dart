@@ -36,20 +36,16 @@ class ToonflixHomeScreen extends StatelessWidget {
         future: webtoons,
         // 데이터가 받아진 후 builder
         builder: (context, snapshot) {
+          // snapshot에 데이터가 있다면
           if (snapshot.hasData) {
-            // snapshot에 데이터가 있다면, ListView로 빌드해서 보여준다.
-            return ListView.separated(
-              // 보여줄 데이터는 수평으로 스크롤
-              scrollDirection: Axis.horizontal,
-              // 보여줄 데이터의 개수 정의
-              itemCount: snapshot.data!.length,
-              // 보여줄 데이터를 index로 변환
-              itemBuilder: (context, index) {
-                var webtoon = snapshot.data![index];
-                print(index);
-                return Text(webtoon.title);
-              },
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
+            // Column을 return한다.
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                Expanded(child: makeList(snapshot))
+              ],
             );
           }
           return const Center(
@@ -57,6 +53,68 @@ class ToonflixHomeScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
+    return ListView.separated(
+      // 보여줄 데이터는 수평으로 스크롤
+      scrollDirection: Axis.horizontal,
+
+      // 보여줄 데이터의 개수 정의
+      itemCount: snapshot.data!.length,
+
+      // Padding
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+
+      // 보여줄 데이터를 index로 변환
+      itemBuilder: (context, index) {
+        var webtoon = snapshot.data![index];
+        // 네이버 차단을 막기위해 User-Agent(브라우저 값) 정의
+        var userAgent = const {
+          "User-Agent":
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+        };
+        print(index);
+        // 1열
+        return Column(
+          children: [
+            // 1열의 첫 번째 Container
+            Container(
+              width: 250,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 7,
+                      offset: const Offset(10, 10),
+                      color: Colors.grey.withOpacity(1),
+                    )
+                  ]),
+              // 첫 번째 Container의 이미지
+              child: Image.network(
+                webtoon.thumb,
+                headers: userAgent,
+              ),
+            ),
+
+            // 1열의 SizedBox
+            const SizedBox(
+              height: 10,
+            ),
+
+            // 1열의 Text
+            Text(
+              webtoon.title,
+              style: const TextStyle(
+                fontSize: 22,
+              ),
+            ),
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(width: 20),
     );
   }
 }
