@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/models/webtoon_model.dart';
 import 'package:toonflix/services/Toonflix_api_service.dart';
+import 'package:toonflix/widgets/webtoon_widget.dart';
 
 class ToonflixHomeScreen extends StatelessWidget {
   ToonflixHomeScreen({super.key});
@@ -70,48 +71,12 @@ class ToonflixHomeScreen extends StatelessWidget {
       // 보여줄 데이터를 index로 변환
       itemBuilder: (context, index) {
         var webtoon = snapshot.data![index];
-        // 네이버 차단을 막기위해 User-Agent(브라우저 값) 정의
-        var userAgent = const {
-          "User-Agent":
-              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-        };
         print(index);
         // 1열
-        return Column(
-          children: [
-            // 1열의 첫 번째 Container
-            Container(
-              width: 250,
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 7,
-                      offset: const Offset(10, 10),
-                      color: Colors.grey.withOpacity(1),
-                    )
-                  ]),
-              // 첫 번째 Container의 이미지
-              child: Image.network(
-                webtoon.thumb,
-                headers: userAgent,
-              ),
-            ),
-
-            // 1열의 SizedBox
-            const SizedBox(
-              height: 10,
-            ),
-
-            // 1열의 Text
-            Text(
-              webtoon.title,
-              style: const TextStyle(
-                fontSize: 22,
-              ),
-            ),
-          ],
+        return Webtoon(
+          title: webtoon.title,
+          thumb: webtoon.thumb,
+          id: webtoon.id,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(width: 20),
