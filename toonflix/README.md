@@ -417,3 +417,23 @@ subject : Webtoon Card
   - clipBehavior
   - BorderRadius
   - Padding
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.03
+file : Toonflix_home_screen.dart & webtoon_detail_screen.dart
+subject : Detail Screen
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/96)
+
+<br>
+
+- Detail Webtoon Screen
+- Gesture Detector
+- Navigator.push & Route
