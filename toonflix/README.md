@@ -438,7 +438,6 @@ subject : Detail Screen
 - Gesture Detector
 - Navigator.push & Route
 
-
 ---
 
 <br>
@@ -457,3 +456,23 @@ subject : Hero Widget
 
 - Hero
 - tag
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.05
+file : Toonflix_api_service.dart & webtoon_detail_model.dart & webtoon_episode_model.dart
+subject : ApiService Upgrade
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/98)
+
+<br>
+
+- Api_Service Upgrade
+  - webtoon_detail_model
+  - webtoon_episode_model
