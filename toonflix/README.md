@@ -476,3 +476,24 @@ subject : ApiService Upgrade
 - Api_Service Upgrade
   - webtoon_detail_model
   - webtoon_episode_model
+
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.06
+file : webtoon_detail_screen.dart
+subject : Futures & Detail Screen Upgrade
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/99)
+
+<br>
+
+- Futures
+- Create Detail UI
+- text interpolation
