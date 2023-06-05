@@ -425,7 +425,7 @@ subject : Webtoon Card
 ```
 Developer : NA
 Date : 2023.06.03
-file : Toonflix_home_screen.dart & webtoon_detail_screen.dart
+file : Toonflix_home_screen.dart & webtoon_detail_screen.dart & webtoon_widget.dart
 subject : Detail Screen
 
 ```
@@ -437,3 +437,42 @@ subject : Detail Screen
 - Detail Webtoon Screen
 - Gesture Detector
 - Navigator.push & Route
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.04
+file : Toonflix_home_screen.dart & webtoon_detail_screen.dart & webtoon_widget.dart
+subject : Hero Widget
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/97)
+
+<br>
+
+- Hero
+- tag
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.05
+file : Toonflix_api_service.dart & webtoon_detail_model.dart & webtoon_episode_model.dart
+subject : ApiService Upgrade
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/98)
+
+<br>
+
+- Api_Service Upgrade
+  - webtoon_detail_model
+  - webtoon_episode_model

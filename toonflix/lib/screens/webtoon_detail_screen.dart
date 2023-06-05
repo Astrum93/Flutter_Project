@@ -40,22 +40,25 @@ class DetailScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 250,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        offset: const Offset(10, 10),
-                        color: Colors.grey.withOpacity(1),
-                      )
-                    ]),
-                // 첫 번째 Container의 이미지
-                child: Image.network(
-                  thumb,
-                  headers: userAgent,
+              Hero(
+                tag: id,
+                child: Container(
+                  width: 250,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7,
+                          offset: const Offset(10, 10),
+                          color: Colors.grey.withOpacity(1),
+                        )
+                      ]),
+                  // 첫 번째 Container의 이미지
+                  child: Image.network(
+                    thumb,
+                    headers: userAgent,
+                  ),
                 ),
               ),
             ],
