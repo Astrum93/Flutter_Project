@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/services/Toonflix_api_service.dart';
+import 'package:toonflix/widgets/episode_widget.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
@@ -130,6 +131,7 @@ class _DetailScreenState extends State<DetailScreen> {
               const SizedBox(
                 height: 50,
               ),
+
               // 메인 Column의 두 번째 FutureBuilder
               FutureBuilder(
                 future: episodes,
@@ -140,47 +142,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         for (var episode in snapshot.data!)
                           // 메인 Column의 조건이 true일 경우 Container
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.green.shade300,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 7,
-                                  offset: const Offset(4, 4),
-                                  color: Colors.grey.withOpacity(1),
-                                ),
-                              ],
-                            ),
-                            // Container의 첫 번째 행
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 10,
-                                horizontal: 20,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // 첫 번째 요소 Text
-                                  Text(
-                                    episode.title,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  // 두 번째 요소 Icon
-                                  const Icon(
-                                    Icons.chevron_right_rounded,
-                                    color: Colors.white,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                          Episode(episode: episode),
                       ],
                     );
                   }
