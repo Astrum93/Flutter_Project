@@ -514,3 +514,27 @@ subject : Detail Screen Upgrade2
 <br>
 
 - Detail Screen Upgrade2
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.08
+file : webtoon_detail_screen.dart & episode_widget.dart & AndroidManifest.xml
+subject : Url Launcher
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/101)
+
+<br>
+
+- Url_Launcher 준비
+  - iOS Configuration
+  - Android Configuration
+- Url_Launcher on Detail Screen
+  - launchUrl & launchUrlString
+  - Link Button
+  - Make Url

@@ -142,7 +142,11 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         for (var episode in snapshot.data!)
                           // 메인 Column의 조건이 true일 경우 Container
-                          Episode(episode: episode),
+                          // Episode widget을 초기화
+                          Episode(
+                            episode: episode,
+                            webtoonId: widget.id,
+                          ),
                       ],
                     );
                   }
