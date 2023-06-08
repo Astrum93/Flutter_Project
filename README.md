@@ -5,7 +5,7 @@
 
 ```
 Developer : NA
-Date : 2023.05.16 ~
+Date : 2023.05.16 ~ 23.06.08
 object : Study & Practice
 Language : Dart
 ```
@@ -16,6 +16,7 @@ Language : Dart
 
 - Financial Mobile App Practice
 - Pomodoro Timer App Practice
+- ToonFlix
 
 <br>
 
@@ -25,8 +26,9 @@ Language : Dart
 
 ---
 
-![image](https://github.com/Astrum93/Flutter_Project/assets/116700688/25ea53ea-10f6-48ac-b240-9ed6a8d7e8ba)
+<br>
 
+![image](https://github.com/Astrum93/Flutter_Project/assets/116700688/25ea53ea-10f6-48ac-b240-9ed6a8d7e8ba)
 
 <br>
 
@@ -41,9 +43,31 @@ Language : Dart
 
 ---
 
+<br>
+
 ![image](https://github.com/Astrum93/Flutter_Project/assets/116700688/900e34f6-49e4-4dc0-a643-c8c86f5c7073)
 
 <br>
 
 #### [🙏 Design Reference Here](https://www.behance.net/gallery/98918603/POMO-UIKIT?tracking_source=search_projects|pomo+uikit&)
 
+<br>
+<br>
+
+---
+
+### Toonflix Mobile App Practice (23.05.26 ~ 23.06.08)
+
+---
+
+<br>
+
+
+
+<br>
+
+
+<br>
+<br>
+
+---

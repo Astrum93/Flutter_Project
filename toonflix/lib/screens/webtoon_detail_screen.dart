@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/services/Toonflix_api_service.dart';
@@ -25,6 +26,30 @@ class _DetailScreenState extends State<DetailScreen> {
   // State에서 사용할 EpisodeModel 변수
   late Future<List<WebtoonEpisodeModel>> episodes;
 
+  // SharedPreferences를 사용할 변수
+  late SharedPreferences prefs;
+
+  // 좋아요의 상태를 나타내는 변수
+  bool isLiked = false;
+
+  // 휴대폰 저장소와 Connection할 함수
+  Future initPrefs() async {
+    // prefs를 휴대폰 저장소와 Connection
+    prefs = await SharedPreferences.getInstance();
+
+    // prefs가 'likedToons'라는 key의 리스트를 불러옴
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (likedToons.contains(widget.id) == true) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      prefs.setStringList('likedToons', []);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +57,26 @@ class _DetailScreenState extends State<DetailScreen> {
     webtoon = ToonflixApiService.getToonById(widget.id);
     // State에서 사용할 EpisodeModel 변수 초기화
     episodes = ToonflixApiService.getLatestEpisodesById(widget.id);
+    // initPrefs() 초기화
+    initPrefs();
+  }
+
+  // isLiked 상태에 따른 widget.id 추가, 제거
+  onHeartTap() async {
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+      // 위의 조건문의 결과를 저장
+      await prefs.setStringList('likedToons', likedToons);
+      // 로직이 끝난 후 초기화
+      setState(() {
+        isLiked = !isLiked;
+      });
+    }
   }
 
   @override
@@ -49,6 +94,15 @@ class _DetailScreenState extends State<DetailScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.green,
+        // Favorite actions
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            icon: Icon(
+              isLiked ? Icons.favorite : Icons.favorite_outline_outlined,
+            ),
+          ),
+        ],
         // AppBar의 타이틀
         title: Text(
           widget.title,

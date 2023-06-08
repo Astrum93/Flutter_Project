@@ -539,3 +539,36 @@ subject : Url Launcher
   - launchUrl & launchUrlString
   - Link Button
   - Make Url
+
+---
+
+<br>
+
+```
+Developer : NA
+Date : 2023.06.08
+file : webtoon_detail_screen.dart
+subject : Favorites
+
+```
+
+### [Blog Posting Here](https://astrum93.tistory.com/102)
+
+<br>
+
+- Favorite Action
+- Shared_Preferences Package
+
+---
+
+<br>
+
+### 🚀 Finish
+
+```
+Developer : NA
+Since : 2023.05.16 ~ 2023.06.08
+object : Study & Practice
+Language : Dart
+status : Finish
+```
