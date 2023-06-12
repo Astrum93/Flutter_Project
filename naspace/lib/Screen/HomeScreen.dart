@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            
             Flexible(
               flex: 1,
               child: Padding(
@@ -46,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
             Flexible(
               flex: 1,
               child: Padding(
@@ -56,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
             Flexible(
               flex: 2,
               child: Padding(
