@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Screen/HomeScreen.dart';
+import 'package:naspace/Screen/WelcomScreen.dart';
 
 void main() {
   runApp(const NAspace());
@@ -11,7 +11,7 @@ class NAspace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
