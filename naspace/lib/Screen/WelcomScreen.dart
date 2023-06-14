@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspace/Screen/HomeScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -27,7 +28,14 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    // Navigator
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.fingerprint,
                       size: 50,
