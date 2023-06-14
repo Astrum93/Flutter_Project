@@ -174,14 +174,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // 세 번째 Expanded
               const invisibleBox(
-                width: 150,
-                height: 150,
+                width1: 150,
+                height1: 150,
               ),
 
               // 네 번째 Expanded
               const invisibleBox(
-                width: 300,
-                height: 150,
+                width1: 300,
+                height1: 150,
               ),
             ],
           ),
