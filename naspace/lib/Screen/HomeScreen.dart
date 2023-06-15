@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Widget/InvisibleBox.dart';
+import 'package:naspace/Widget/InvisibleBox_Hot.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,8 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
+          opacity: 0.4,
           fit: BoxFit.cover,
-          image: AssetImage('lib/Image/background.png'),
+          image: AssetImage('lib/Image/Background/universe4.jpg'),
         ),
       ),
       child: Scaffold(
@@ -26,56 +27,184 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.white,
+          centerTitle: true,
+          title: const Text('Music is Life'),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.tag_faces_outlined),
+              icon: const Icon(Icons.menu_rounded),
             )
           ],
         ),
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        body: const Padding(
-          padding: EdgeInsets.all(8.0),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             // 메인 컬럼
             child: Column(
               children: [
+                // 메인 컬럼의 SizedBox
+                const SizedBox(height: 10),
+
                 // 메인 컬럼의 첫 번째 행
-                Row(
+                const Column(
                   children: [
-                    Text('data1'),
+                    Text(
+                      'Hot5 🔥',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
+
                 // 메인 컬럼의 SizedBox
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // 메인 컬럼의 두 번째 행
-                SingleChildScrollView(
+                const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      invisibleBox(width1: 250, height1: 250),
+                      InvisibleBox(),
                       SizedBox(width: 10),
-                      invisibleBox(width1: 250, height1: 250),
+                      InvisibleBox(),
                       SizedBox(width: 10),
-                      invisibleBox(width1: 250, height1: 250),
+                      InvisibleBox(),
                       SizedBox(width: 10),
-                      invisibleBox(width1: 250, height1: 250),
+                      InvisibleBox(),
                       SizedBox(width: 10),
-                      invisibleBox(width1: 250, height1: 250),
+                      InvisibleBox(),
                     ],
                   ),
                 ),
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 40),
 
-                Column(
+                // 메인 컬럼 세 번째 열
+                const Column(
                   children: [
-                    Text('test'),
-                    invisibleBox(width1: 100, height1: 100),
+                    Text(
+                      '1111',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
-                )
+                ),
+
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 20),
+
+                // 메인 컬럼 네 번째 컨테이너 (Invisible)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 7,
+                      )
+                    ],
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text('test'),
+                      ],
+                    ),
+                  ),
+                ),
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 40),
+
+                // 메인 컬럼 네 번째 열
+                const Column(
+                  children: [
+                    Text(
+                      '2222',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 20),
+
+                // 메인 컬럼 다섯 번째 컨테이너 (Invisible)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 7,
+                      )
+                    ],
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text('test'),
+                      ],
+                    ),
+                  ),
+                ),
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 40),
+
+                // 메인 컬럼 다섯 번째 열
+                const Column(
+                  children: [
+                    Text(
+                      '3333',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+
+                // 메인 컬럼 SizedBox
+                const SizedBox(height: 20),
+
+                // 메인 컬럼 여섯 번째 컨테이너 (Invisible)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 7,
+                      )
+                    ],
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text('test'),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

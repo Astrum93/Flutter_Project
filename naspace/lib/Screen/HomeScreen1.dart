@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Widget/InvisibleBox.dart';
+import 'package:naspace/Widget/InvisibleBox_Hot.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -173,16 +173,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               // 세 번째 Expanded
-              const invisibleBox(
-                width1: 150,
-                height1: 150,
-              ),
+              const InvisibleBox(),
 
               // 네 번째 Expanded
-              const invisibleBox(
-                width1: 300,
-                height1: 150,
-              ),
+              const InvisibleBox(),
             ],
           ),
         ),

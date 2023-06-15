@@ -10,8 +10,8 @@ class WelcomeScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage('lib/Image/WelcomeImage.png'),
+          fit: BoxFit.fill,
+          image: AssetImage('lib/Image/Background/universe3.jpg'),
         ),
       ),
       child: Scaffold(
@@ -39,6 +39,7 @@ class WelcomeScreen extends StatelessWidget {
                     icon: const Icon(
                       Icons.fingerprint,
                       size: 50,
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(
@@ -57,7 +58,10 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Text(
                   '터치',
-                  style: TextStyle(fontFamily: ''),
+                  style: TextStyle(
+                      fontFamily: '',
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 )
               ],
             ),
