@@ -15,7 +15,7 @@ class InvisibleBox extends StatelessWidget {
           children: [
             Container(
               width: 350,
-              height: 380,
+              height: 400,
               margin: const EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -84,10 +84,17 @@ class InvisibleBox extends StatelessWidget {
                               'Pikachu',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 13,
+                                fontSize: 17,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            Text(
+                              '10.3k',
+                              style: TextStyle(
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13),
+                            )
                           ],
                         ),
                         Row(
@@ -99,11 +106,26 @@ class InvisibleBox extends StatelessWidget {
                               icon: const Icon(
                                 Icons.favorite_border_outlined,
                               ),
-                            )
+                            ),
                           ],
                         )
                       ],
                     ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            '19650',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
