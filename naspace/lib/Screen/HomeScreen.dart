@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspace/Widget/InvisibleBox_Basic.dart';
 import 'package:naspace/Widget/InvisibleBox_Hot.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,23 +10,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Color homebgc = const Color.fromARGB(255, 0, 3, 28);
+
   @override
   Widget build(BuildContext context) {
     // 배경 이미지
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          opacity: 0.4,
-          fit: BoxFit.cover,
-          image: AssetImage('lib/Image/Background/universe4.jpg'),
-        ),
-      ),
+      decoration: BoxDecoration(color: homebgc),
       child: Scaffold(
         backgroundColor: Colors.transparent,
 
         // AppBar
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor:
+              const Color.fromARGB(255, 15, 15, 15).withOpacity(0.3),
           foregroundColor: Colors.white,
           centerTitle: true,
           title: const Text('Music is Life'),
@@ -40,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 13),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             // 메인 컬럼
@@ -49,39 +47,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 // 메인 컬럼의 SizedBox
                 const SizedBox(height: 10),
 
-                // 메인 컬럼의 첫 번째 행
-                const Column(
-                  children: [
-                    Text(
-                      'Hot5 🔥',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-
-                // 메인 컬럼의 SizedBox
-                const SizedBox(height: 20),
-
                 // 메인 컬럼의 두 번째 행
                 const SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
                       InvisibleBox(),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                       InvisibleBox(),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                       InvisibleBox(),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                       InvisibleBox(),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                       InvisibleBox(),
                     ],
                   ),
                 ),
+
                 // 메인 컬럼 SizedBox
                 const SizedBox(height: 40),
 
@@ -91,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       '1111',
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -102,27 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 20),
 
                 // 메인 컬럼 네 번째 컨테이너 (Invisible)
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        blurRadius: 7,
-                      )
-                    ],
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text('test'),
-                      ],
-                    ),
-                  ),
-                ),
+                const InvisibleBoxBasic(),
                 // 메인 컬럼 SizedBox
                 const SizedBox(height: 40),
 
@@ -132,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       '2222',
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -159,7 +124,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Text('test'),
+                        Text(
+                          'test',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -173,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       '3333',
                       style: TextStyle(
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -200,7 +171,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Text('test'),
+                        Text(
+                          'test',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
