@@ -22,7 +22,7 @@ class InvisibleBox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.black.withOpacity(0.4),
                     blurRadius: 7,
                   )
                 ],

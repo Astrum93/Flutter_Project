@@ -30,10 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.menu_rounded),
-            )
+              icon: const Icon(Icons.search_rounded),
+            ),
+            Container(
+              width: 30,
+              height: 30,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('lib/Image/profile/pikachu.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: const Text(' '),
+            ),
           ],
         ),
+        drawer: const Drawer(),
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,6 +197,34 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+        ),
+
+        // Bottom Navigation Bar
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey.shade600,
+          showUnselectedLabels: false,
+          backgroundColor:
+              const Color.fromARGB(255, 15, 15, 15).withOpacity(0.1),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: 'home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search_rounded),
+              label: 'search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.create),
+              label: 'create',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.messenger_outline_rounded),
+              label: 'messenger',
+            ),
+          ],
         ),
       ),
     );
