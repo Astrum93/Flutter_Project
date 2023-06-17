@@ -5,7 +5,7 @@
 
 ```
 Developer : NA
-Date : 2023.05.16 ~ 23.06.08
+Date : 2023.05.16 ~ 
 object : Study & Practice
 Language : Dart
 ```
@@ -13,6 +13,7 @@ Language : Dart
 <hr>
 
 ## 🎨 Toonflix Project
+#### 2023.05.16 ~ 23.06.08
 
 - Financial Mobile App Practice
 - Pomodoro Timer App Practice
@@ -69,6 +70,18 @@ Language : Dart
 
 
 <br>
+<br>
+
+---
+
+
+<hr>
+
+## 🎵 Music is Life Project
+#### 2023.06.12 ~ 
+
+- Music is Life Project
+
 <br>
 
 ---
