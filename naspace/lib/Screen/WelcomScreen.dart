@@ -68,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
                 ],
               ),
 
-              // // 메인 SizedBox
+              // 메인 SizedBox
               // const SizedBox(height: 90),
             ],
           ),
