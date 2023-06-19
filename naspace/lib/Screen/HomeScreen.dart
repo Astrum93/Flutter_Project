@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/InvisibleBox_Basic.dart';
 import 'package:naspace/Widget/InvisibleBox_Hot.dart';
 
@@ -32,17 +33,28 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {},
               icon: const Icon(Icons.search_rounded),
             ),
-            Container(
-              width: 30,
-              height: 30,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('lib/Image/profile/pikachu.png'),
-                  fit: BoxFit.cover,
+
+            // 개인 프로필
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: ((context) => const MyScreen()),
+                  ),
+                );
+              },
+              child: Container(
+                width: 30,
+                height: 30,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('lib/Image/profile/pikachu.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                child: const Text(' '),
               ),
-              child: const Text(' '),
             ),
           ],
         ),
