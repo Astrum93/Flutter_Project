@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspace/Screen/HomeScreen.dart';
 
 class MyScreen extends StatelessWidget {
   const MyScreen({super.key});
@@ -41,6 +42,22 @@ class MyScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: 0,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.home,
+                        color: Colors.grey.shade900,
+                        size: 30,
+                      ),
+                    ),
+                  )
                 ],
               ),
               const SizedBox(height: 60),
@@ -74,7 +91,7 @@ class MyScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.whatshot_rounded,
+                      Icons.library_music_outlined,
                       color: Colors.red,
                     ),
                   ),

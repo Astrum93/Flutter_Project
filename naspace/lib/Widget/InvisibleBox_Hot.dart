@@ -38,7 +38,7 @@ class InvisibleBoxHot extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16),
                         image: const DecorationImage(
                           image: AssetImage('lib/Image/Thumb/Thumb_Test.jpeg'),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       child: const Text(''),
