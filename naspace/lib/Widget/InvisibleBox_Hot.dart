@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:naspace/Widget/HashTagWidget.dart';
 
-class InvisibleBox extends StatelessWidget {
-  const InvisibleBox({
+class InvisibleBoxHot extends StatelessWidget {
+  const InvisibleBoxHot({
     super.key,
   });
 
@@ -66,18 +66,13 @@ class InvisibleBox extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Container(
-                              width: 25,
-                              height: 25,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'lib/Image/profile/pikachu.png'),
-                                  fit: BoxFit.cover,
-                                ),
+                            CircleAvatar(
+                              radius: 25,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.asset(
+                                    'lib/Image/profile/pikachu.png'),
                               ),
-                              child: const Text(' '),
                             ),
                             const SizedBox(width: 10),
                             const Text(

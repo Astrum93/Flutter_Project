@@ -43,17 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage('lib/Image/profile/pikachu.png'),
-                    fit: BoxFit.cover,
-                  ),
+              child: CircleAvatar(
+                radius: 17,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset('lib/Image/profile/pikachu.png'),
                 ),
-                child: const Text(' '),
               ),
             ),
           ],
@@ -77,15 +72,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      InvisibleBox(),
+                      InvisibleBoxHot(),
                       SizedBox(width: 15),
-                      InvisibleBox(),
+                      InvisibleBoxHot(),
                       SizedBox(width: 15),
-                      InvisibleBox(),
+                      InvisibleBoxHot(),
                       SizedBox(width: 15),
-                      InvisibleBox(),
+                      InvisibleBoxHot(),
                       SizedBox(width: 15),
-                      InvisibleBox(),
+                      InvisibleBoxHot(),
                     ],
                   ),
                 ),
