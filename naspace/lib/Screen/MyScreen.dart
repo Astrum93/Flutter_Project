@@ -84,7 +84,7 @@ class MyScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.chat_outlined,
+                      Icons.forward_to_inbox_rounded,
                       color: Colors.blue,
                     ),
                   ),
@@ -105,6 +105,23 @@ class MyScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 350,
+                    height: 100,
+                    decoration: const BoxDecoration(color: Colors.transparent),
+                    child: const Text(
+                      '안녕하세요 피카츄 입니다. 만나서 반가워용',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 10),
 
               // 음악 플레이어
               Container(
