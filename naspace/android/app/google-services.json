@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "172279094373",
+    "project_id": "musicislife-naspace",
+    "storage_bucket": "musicislife-naspace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172279094373:android:6a9e87183f4c806dd4fa8c",
+        "android_client_info": {
+          "package_name": "com.example.naspace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172279094373-9rj3s3cssml16hm6jm14fj608li96t36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJsu9YAeER8PWGO7MjUdOt4Dpl9OmgcCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172279094373-9rj3s3cssml16hm6jm14fj608li96t36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
