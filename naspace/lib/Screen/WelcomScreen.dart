@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
+import 'package:naspace/Screen/JoinScreen.dart';
+import 'package:naspace/Screen/LogInScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -24,52 +26,117 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // 메인 Column의 Container
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      // Navigator
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.fingerprint,
-                        size: 50,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    )
-                  ],
-                ),
-              ),
-
-              // 메인 SizedBox
-              const SizedBox(height: 10),
-
-              // 메인 Row
-              const Row(
+              // 메인 Column의 로그인 버튼
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '터치',
-                    style: TextStyle(
-                        fontFamily: '',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  )
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const LogInScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.7),
+                                blurRadius: 5,
+                              )
+                            ],
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "로그인",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // 메인 SizedBox
+                      const SizedBox(height: 15),
+
+                      // 메인 Column의 회원가입 버튼
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const JoinScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.7),
+                                blurRadius: 5,
+                              )
+                            ],
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "회원가입",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // 메인 SizedBox
+                      const SizedBox(height: 1),
+
+                      // 비회원 로그인
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            "비회원 로그인",
+                            style: TextStyle(color: Colors.grey),
+                          ))
+                    ],
+                  ),
                 ],
               ),
-
-              // 메인 SizedBox
-              // const SizedBox(height: 90),
             ],
           ),
         ),

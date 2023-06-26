@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Screen/JoinScreen.dart';
-import 'package:naspace/Screen/LoginScreen.dart';
 import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/InvisibleBox_Basic.dart';
 import 'package:naspace/Widget/InvisibleBox_Hot.dart';
@@ -94,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Column(
                   children: [
                     Text(
-                      'Login',
+                      'Test',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -108,38 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 20),
 
                 // 로그인 버튼
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const LogInScreen(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.login,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const JoinScreen(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.person_add_alt_1_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+                const InvisibleBoxBasic(),
 
                 const SizedBox(height: 20),
 
