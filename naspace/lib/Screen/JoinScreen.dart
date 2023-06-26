@@ -75,6 +75,8 @@ class _JoinScreenState extends State<JoinScreen> {
                               hintText: "이름",
                               hintStyle: TextStyle(
                                 color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
                               contentPadding: EdgeInsets.all(10),
                             ),
@@ -100,9 +102,11 @@ class _JoinScreenState extends State<JoinScreen> {
                                   Radius.circular(35),
                                 ),
                               ),
-                              hintText: "메일",
+                              hintText: "메일 주소",
                               hintStyle: TextStyle(
                                 color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
                               contentPadding: EdgeInsets.all(10),
                             ),
@@ -113,7 +117,7 @@ class _JoinScreenState extends State<JoinScreen> {
                           TextFormField(
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
-                                Icons.password_rounded,
+                                Icons.lock_open_rounded,
                                 color: Colors.grey,
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -131,6 +135,38 @@ class _JoinScreenState extends State<JoinScreen> {
                               hintText: "비밀번호",
                               hintStyle: TextStyle(
                                 color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              contentPadding: EdgeInsets.all(10),
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+
+                          // 비밀번호 재확인
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.lock_outline_rounded,
+                                color: Colors.grey,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              hintText: "비밀번호 재확인",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
                               contentPadding: EdgeInsets.all(10),
                             ),
@@ -159,6 +195,8 @@ class _JoinScreenState extends State<JoinScreen> {
                               hintText: "전화번호",
                               hintStyle: TextStyle(
                                 color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
                               contentPadding: EdgeInsets.all(10),
                             ),
@@ -188,7 +226,7 @@ class _JoinScreenState extends State<JoinScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                '또는 소셜 로그인',
+                                '또는 SNS 간편 가입',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 10,
