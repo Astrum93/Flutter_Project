@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:naspace/Screen/LogInScreen.dart';
 
 class JoinScreen extends StatefulWidget {
   const JoinScreen({super.key});
@@ -8,6 +10,9 @@ class JoinScreen extends StatefulWidget {
 }
 
 class _JoinScreenState extends State<JoinScreen> {
+  // Firebase Authentication Instance
+  final _authentication = FirebaseAuth.instance;
+
   // Form Key
   final formKey = GlobalKey<FormState>();
 
@@ -69,6 +74,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 이름
                           TextFormField(
+                            keyboardType: TextInputType.name,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -115,6 +121,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 이메일
                           TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -161,6 +168,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 비밀번호
                           TextFormField(
+                            obscureText: true,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -207,6 +215,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 비밀번호 재확인
                           TextFormField(
+                            obscureText: true,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -253,6 +262,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 전화 번호
                           TextFormField(
+                            keyboardType: TextInputType.phone,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -297,8 +307,38 @@ class _JoinScreenState extends State<JoinScreen> {
                           ),
                           const SizedBox(height: 30),
                           InkWell(
-                            onTap: () {
+                            onTap: () async {
+                              // Validate 실행 함수
                               tryValidation();
+
+                              // Authentication 사용할 함수
+                              try {
+                                final newUser = await _authentication
+                                    .createUserWithEmailAndPassword(
+                                  email: userMail,
+                                  password: userPassword,
+                                );
+                                // User 등록이 됬을 경우
+                                if (newUser.user != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LogInScreen(),
+                                    ),
+                                  );
+                                }
+                              } catch (e) {
+                                print(e);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      '회원가입이 정상적으로 이루어지지 않았습니다.\n입력하신 정보를 확인해 주세요.',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              }
                             },
                             child: Container(
                               width: 40,

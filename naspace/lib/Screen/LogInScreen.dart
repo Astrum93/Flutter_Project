@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -8,6 +9,41 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  // Firebase Authentication Instance
+  final _authentication = FirebaseAuth.instance;
+
+  // 로그인된 유저
+  User? loggedUser;
+
+  // initstate 함수
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  // 현재 유저를 가져오는 함수
+  void getCurrentUser() {
+    try {
+      final user = _authentication.currentUser;
+      if (user != null) {
+        loggedUser = user;
+        print(loggedUser!.email);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '환영합니다. ${loggedUser!.email} 님',
+              textAlign: TextAlign.center,
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   // Form Key
   final formKey = GlobalKey<FormState>();
 
