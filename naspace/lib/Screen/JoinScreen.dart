@@ -11,6 +11,20 @@ class _JoinScreenState extends State<JoinScreen> {
   // Form Key
   final formKey = GlobalKey<FormState>();
 
+  // 회원가입 Value 저장할 변수
+  String userName = '';
+  String userMail = '';
+  String userPassword = '';
+  String userPasswordCheck = '';
+  String userPhoneNumber = '';
+
+  void tryValidation() {
+    final isValid = formKey.currentState!.validate();
+    if (isValid) {
+      formKey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +69,22 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 이름
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(1),
+                            validator: (value) {
+                              if (value!.isEmpty || value.length < 2) {
+                                return '이름을 입력해 주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userName = value!;
+                            },
+                            onChanged: (value) {
+                              userName = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.account_circle,
@@ -85,6 +115,22 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 이메일
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(2),
+                            validator: (value) {
+                              if (value!.isEmpty || !value.contains('@')) {
+                                return '올바른 메일을 입력해 주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userMail = value!;
+                            },
+                            onChanged: (value) {
+                              userMail = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.mail,
@@ -115,6 +161,22 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 비밀번호
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(3),
+                            validator: (value) {
+                              if (value!.isEmpty || value.length < 6) {
+                                return '최소 6자리 이상을 입력해주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userPassword = value!;
+                            },
+                            onChanged: (value) {
+                              userPassword = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.lock_open_rounded,
@@ -145,6 +207,22 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 비밀번호 재확인
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(4),
+                            validator: (value) {
+                              if (value!.isEmpty || value.length < 6) {
+                                return '비밀번호가 일치하지 않습니다.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userPasswordCheck = value!;
+                            },
+                            onChanged: (value) {
+                              userPasswordCheck = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.lock_outline_rounded,
@@ -175,6 +253,22 @@ class _JoinScreenState extends State<JoinScreen> {
 
                           // 전화 번호
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(5),
+                            validator: (value) {
+                              if (value!.isEmpty || !value.contains('-')) {
+                                return '올바른 휴대전화 번호를 입력해 주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userPhoneNumber = value!;
+                            },
+                            onChanged: (value) {
+                              userPhoneNumber = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.phone_android_rounded,
@@ -204,7 +298,7 @@ class _JoinScreenState extends State<JoinScreen> {
                           const SizedBox(height: 30),
                           InkWell(
                             onTap: () {
-                              //
+                              tryValidation();
                             },
                             child: Container(
                               width: 40,

@@ -10,6 +10,19 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   // Form Key
   final formKey = GlobalKey<FormState>();
+
+  // 회원가입 Value 저장할 변수
+
+  String userMail = '';
+  String userPassword = '';
+
+  void tryValidation() {
+    final isValid = formKey.currentState!.validate();
+    if (isValid) {
+      formKey.currentState!.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +47,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               const SizedBox(height: 50),
 
-              //
+              // 메인 컨테이너
               Container(
                 decoration: const BoxDecoration(color: Colors.black),
                 child: SingleChildScrollView(
@@ -58,12 +71,44 @@ class _LogInScreenState extends State<LogInScreen> {
 
                           // 아이디 입력
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(1),
+                            validator: (value) {
+                              if (value!.isEmpty || !value.contains('@')) {
+                                return '올바른 메일을 입력해 주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userMail = value!;
+                            },
                             decoration: const InputDecoration(
-                                labelText: 'e-mail',
-                                border: OutlineInputBorder(),
-                                filled: true,
-                                fillColor: Colors.white),
-                            keyboardType: TextInputType.emailAddress,
+                              prefixIcon: Icon(
+                                Icons.mail,
+                                color: Colors.grey,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              hintText: "메일 주소",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              contentPadding: EdgeInsets.all(10),
+                            ),
                           ),
                           const SizedBox(height: 15),
 
@@ -81,20 +126,52 @@ class _LogInScreenState extends State<LogInScreen> {
 
                           // 비밀번호 입력
                           TextFormField(
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                            key: const ValueKey(2),
+                            validator: (value) {
+                              if (value!.isEmpty || value.length < 6) {
+                                return '최소 6자리 이상을 입력해주세요.';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              userPassword = value!;
+                            },
                             decoration: const InputDecoration(
-                                labelText: 'password',
-                                border: OutlineInputBorder(),
-                                filled: true,
-                                fillColor: Colors.white),
-                            keyboardType: TextInputType.text,
-                            obscureText: true,
+                              prefixIcon: Icon(
+                                Icons.lock_outline_rounded,
+                                color: Colors.grey,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35),
+                                ),
+                              ),
+                              hintText: "비밀번호",
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              contentPadding: EdgeInsets.all(10),
+                            ),
                           ),
+
                           const SizedBox(height: 35),
 
                           // 체크 버튼
                           InkWell(
                             onTap: () {
-                              //
+                              tryValidation();
                             },
                             child: Container(
                               width: 40,
