@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/InvisibleBox_Basic.dart';
 import 'package:naspace/Widget/InvisibleBox_Hot.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +12,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // 배경 색상
   Color homebgc = const Color.fromARGB(255, 0, 3, 28);
+
+  // Firebase Authentication Instance
+  final _authentication = FirebaseAuth.instance;
+
+  // 로그인된 유저
+  User? loggedUser;
+
+  // initstate 함수
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  // 현재 유저를 가져오는 함수
+  void getCurrentUser() {
+    try {
+      final user = _authentication.currentUser;
+      if (user != null) {
+        loggedUser = user;
+        print(loggedUser!.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:naspace/Screen/HomeScreen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -9,40 +10,12 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+//////////////////////////////////         FirebaseAuth           //////////////////////////////////////////////////////
+
   // Firebase Authentication Instance
   final _authentication = FirebaseAuth.instance;
 
-  // 로그인된 유저
-  User? loggedUser;
-
-  // initstate 함수
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
-
-  // 현재 유저를 가져오는 함수
-  void getCurrentUser() {
-    try {
-      final user = _authentication.currentUser;
-      if (user != null) {
-        loggedUser = user;
-        print(loggedUser!.email);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '환영합니다. ${loggedUser!.email} 님',
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+//////////////////////////////////         Validation           //////////////////////////////////////////////////////
 
   // Form Key
   final formKey = GlobalKey<FormState>();
@@ -58,6 +31,8 @@ class _LogInScreenState extends State<LogInScreen> {
       formKey.currentState!.save();
     }
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +95,9 @@ class _LogInScreenState extends State<LogInScreen> {
                             onSaved: (value) {
                               userMail = value!;
                             },
+                            onChanged: (value) {
+                              userMail = value;
+                            },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.mail,
@@ -162,6 +140,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
                           // 비밀번호 입력
                           TextFormField(
+                            obscureText: true,
                             style: const TextStyle(
                               color: Colors.white,
                             ),
@@ -174,6 +153,9 @@ class _LogInScreenState extends State<LogInScreen> {
                             },
                             onSaved: (value) {
                               userPassword = value!;
+                            },
+                            onChanged: (value) {
+                              userPassword = value;
                             },
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
@@ -206,8 +188,36 @@ class _LogInScreenState extends State<LogInScreen> {
 
                           // 체크 버튼
                           InkWell(
-                            onTap: () {
+                            onTap: () async {
                               tryValidation();
+
+                              try {
+                                final newUser = await _authentication
+                                    .signInWithEmailAndPassword(
+                                  email: userMail,
+                                  password: userPassword,
+                                );
+                                // User 등록이 됬을 경우
+                                if (newUser.user != null) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomeScreen(),
+                                    ),
+                                  );
+                                }
+                              } catch (e) {
+                                print(e);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      '로그인이 정상적으로 이루어지지 않았습니다.\n입력하신 정보를 확인해 주세요.',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              }
                             },
                             child: Container(
                               width: 40,

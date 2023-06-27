@@ -10,9 +10,13 @@ class JoinScreen extends StatefulWidget {
 }
 
 class _JoinScreenState extends State<JoinScreen> {
+
+//////////////////////////////////         FirebaseAuth           /////////////////////////////////////////////////// 
   // Firebase Authentication Instance
   final _authentication = FirebaseAuth.instance;
 
+//////////////////////////////////         Validation           //////////////////////////////////////////////////////
+  
   // Form Key
   final formKey = GlobalKey<FormState>();
 
@@ -29,7 +33,7 @@ class _JoinScreenState extends State<JoinScreen> {
       formKey.currentState!.save();
     }
   }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -313,13 +317,13 @@ class _JoinScreenState extends State<JoinScreen> {
 
                               // Authentication 사용할 함수
                               try {
-                                final newUser = await _authentication
+                                final joinedUser = await _authentication
                                     .createUserWithEmailAndPassword(
                                   email: userMail,
                                   password: userPassword,
                                 );
                                 // User 등록이 됬을 경우
-                                if (newUser.user != null) {
+                                if (joinedUser.user != null) {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
