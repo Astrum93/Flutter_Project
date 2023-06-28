@@ -72,16 +72,257 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: CircleAvatar(
+                backgroundColor: Colors.transparent,
                 radius: 17,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
-                  child: Image.asset('lib/Image/profile/pikachu.png'),
+                  child: Image.asset(
+                    'lib/Image/Logo/NAspace.png',
+                  ),
                 ),
               ),
             ),
           ],
         ),
-        drawer: const Drawer(),
+
+        // Drawer
+        drawer: Drawer(
+          backgroundColor: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(1),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      const Row(
+                        children: [
+                          Text(
+                            'Welcome',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '${loggedUser!.email}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: 250,
+                          height: 250,
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: -20,
+                          left: -20,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 50,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset('lib/Image/Logo/NAspace.png'),
+                            ),
+                          ),
+                        ),
+
+                        // User ID UI
+                        Positioned(
+                          top: 20,
+                          left: 90,
+                          child: Container(
+                            width: 140,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 7,
+                                )
+                              ],
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.music_note_rounded,
+                                    color: Colors.green,
+                                    size: 25,
+                                  ),
+                                  SizedBox(width: 7),
+                                  Text(
+                                    "NA",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // 게시글, Liked, Like
+                        Positioned(
+                          top: 90,
+                          left: 10,
+                          child: Container(
+                            width: 230,
+                            height: 100,
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  blurRadius: 7,
+                                )
+                              ],
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // 게시글
+                                  Column(
+                                    children: [
+                                      Text(
+                                        '게시글',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        '0',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  SizedBox(width: 30),
+
+                                  // 좋아하는 사람
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'Liked',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        '0',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(width: 30),
+
+                                  // 좋아하는 사람
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'Like',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        '0',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // 로그아웃 버튼
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 5,
+                          child: Center(
+                            child: TextButton.icon(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  minimumSize: const Size(120, 40),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  backgroundColor:
+                                      Colors.grey.withOpacity(0.8)),
+                              icon: const Icon(Icons.logout_rounded),
+                              label: const Text('Logout'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
