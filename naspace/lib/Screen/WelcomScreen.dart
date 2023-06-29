@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:naspace/Screen/JoinScreen.dart';
@@ -12,8 +11,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  final _currentUser = FirebaseAuth.instance.currentUser;
-
   @override
   Widget build(BuildContext context) {
     // Image 배경
@@ -34,13 +31,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // 메인 Column의 로그인 버튼
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // 메인 Column의 로그인 버튼
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(

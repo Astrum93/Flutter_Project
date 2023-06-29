@@ -232,6 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         '게시글',
                                         style: TextStyle(
                                           color: Colors.white,
+                                          fontSize: 11,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
