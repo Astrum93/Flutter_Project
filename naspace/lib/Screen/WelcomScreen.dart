@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:naspace/Screen/JoinScreen.dart';
 import 'package:naspace/Screen/LogInScreen.dart';
-
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -12,7 +12,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  
+  final _currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -130,17 +130,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                       // 비회원 로그인
                       TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "비회원 로그인",
-                            style: TextStyle(color: Colors.grey),
-                          ))
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "비회원 로그인",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                      // Text(
+                      //   '현재 로그인된 유저는 $_currentUser 입니다.',
+                      //   style: const TextStyle(color: Colors.white),
+                      // )
                     ],
                   ),
                 ],

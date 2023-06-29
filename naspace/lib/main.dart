@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:naspace/Screen/WelcomScreen.dart';
 import 'package:naspace/firebase_options.dart';
 
@@ -16,9 +18,17 @@ class NAspace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const HomeScreen();
+          }
+          return const WelcomeScreen();
+        },
+      ),
     );
   }
 }

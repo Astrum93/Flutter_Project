@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naspace/Screen/MyScreen.dart';
+import 'package:naspace/Screen/WelcomScreen.dart';
 import 'package:naspace/Widget/InvisibleBox_Basic.dart';
 import 'package:naspace/Widget/InvisibleBox_Hot.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,6 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: [
                           Text(
+                            // 'na email',
                             '${loggedUser!.email}',
                             style: const TextStyle(
                               color: Colors.white,
@@ -301,7 +303,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           bottom: 5,
                           child: Center(
                             child: TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                _authentication.signOut();
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const WelcomeScreen()));
+                              },
                               style: TextButton.styleFrom(
                                   foregroundColor: Colors.white,
                                   minimumSize: const Size(120, 40),
