@@ -11,7 +11,7 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  //
+  // 로딩 스피너 상태 변수
   bool _loading = false;
 //////////////////////////////////         FirebaseAuth           //////////////////////////////////////////////////////
 
