@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:naspace/Screen/LogInScreen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class JoinScreen extends StatefulWidget {
   const JoinScreen({super.key});
@@ -117,7 +118,7 @@ class _JoinScreenState extends State<JoinScreen> {
                                     Radius.circular(35),
                                   ),
                                 ),
-                                hintText: "이름",
+                                hintText: "이름 (ID)",
                                 hintStyle: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 12,
@@ -305,7 +306,7 @@ class _JoinScreenState extends State<JoinScreen> {
                                     Radius.circular(35),
                                   ),
                                 ),
-                                hintText: "전화번호",
+                                hintText: "전화번호 (010-0000-0000)",
                                 hintStyle: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 12,
@@ -332,6 +333,17 @@ class _JoinScreenState extends State<JoinScreen> {
                                     email: userMail,
                                     password: userPassword,
                                   );
+
+                                  // Firestore의 UserInfo에 저장
+                                  await FirebaseFirestore.instance
+                                      .collection('UserInfo')
+                                      .doc(joinedUser.user!.uid)
+                                      .set({
+                                    'userName': userName,
+                                    'userMail': userMail,
+                                    'userPhomeNumber': userPhoneNumber
+                                  });
+
                                   // User 등록이 됬을 경우
                                   if (joinedUser.user != null) {
                                     Navigator.push(

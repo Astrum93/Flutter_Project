@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:naspace/Screen/JoinScreen.dart';
 import 'package:naspace/Screen/LogInScreen.dart';
 
@@ -31,7 +30,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -127,23 +125,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const SizedBox(height: 1),
 
                       // 비회원 로그인
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "비회원 로그인",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
+                      // TextButton(
+                      //   onPressed: () {
+                      //     Navigator.of(context).push(
+                      //       MaterialPageRoute(
+                      //         builder: (context) => const HomeScreen(),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: const Text(
+                      //     "비회원 로그인",
+                      //     style: TextStyle(color: Colors.grey),
+                      //   ),
+                      // ),
                       // Text(
                       //   '현재 로그인된 유저는 $_currentUser 입니다.',
                       //   style: const TextStyle(color: Colors.white),
                       // )
+                      const SizedBox(height: 20)
                     ],
                   ),
                 ],
