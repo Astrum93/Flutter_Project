@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // 현재 유저 정보를 가져오는 함수
-  getCurrentUser() async {
+  void getCurrentUser() async {
     try {
       if (user != null) {
         loggedUser = user;
@@ -50,8 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
         print(user!.email);
         print('환영합니다. ${getUserData.data()!['userName']} 님!');
-        print(getUserData);
-        return getUserData;
       }
     } catch (e) {
       print(e);
@@ -74,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Color.fromARGB(255, 15, 15, 15).withOpacity(0.3),
               foregroundColor: Colors.white,
               centerTitle: true,
-              title: Text('Music is Life, ${userInfo.doc()}'),
+              title: const Text('Music is Life'),
               actions: [
                 IconButton(
                   onPressed: () {},
@@ -133,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 // 'na email',
-                                '${loggedUser!.email}',
+                                '${loggedUser!.email}, ',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
