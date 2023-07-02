@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const Color.fromARGB(255, 15, 15, 15).withOpacity(0.3),
               foregroundColor: Colors.white,
               centerTitle: true,
-              title: const Text('Music is Life'),
+              title: Text('Music is Life, ${userInfo.doc()}'),
               actions: [
                 IconButton(
                   onPressed: () {},
