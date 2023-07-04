@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naspace/Edit%20Image/edit_profile.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,6 +23,19 @@ class _MyScreenState extends State<MyScreen> {
   _getUserInfo() async {
     var userinfo = await userInfo.doc(_uid).get();
     return userinfo.data();
+  }
+
+  // 이미지 수정 팝업창
+  void showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Dialog(
+          backgroundColor: Colors.transparent,
+          child: EditProfileImage(),
+        );
+      },
+    );
   }
 
   @override
@@ -59,12 +73,17 @@ class _MyScreenState extends State<MyScreen> {
                                 left: 0,
                                 right: 0,
                                 bottom: -50,
-                                child: CircleAvatar(
-                                  radius: 50,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.asset(
-                                        'lib/Image/profile/pikachu.png'),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showAlert(context);
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 50,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.asset(
+                                          'lib/Image/profile/pikachu.png'),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -84,7 +103,7 @@ class _MyScreenState extends State<MyScreen> {
                                     size: 30,
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(height: 60),
