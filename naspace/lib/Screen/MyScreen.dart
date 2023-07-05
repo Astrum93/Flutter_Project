@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:naspace/Edit%20Image/edit_profile.dart';
-import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:naspace/Screen/HomeScreen.dart';
 
 class MyScreen extends StatefulWidget {
   const MyScreen({super.key});
@@ -36,6 +36,13 @@ class _MyScreenState extends State<MyScreen> {
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getUserInfo();
   }
 
   @override
@@ -78,11 +85,15 @@ class _MyScreenState extends State<MyScreen> {
                                     showAlert(context);
                                   },
                                   child: CircleAvatar(
+                                    backgroundColor: Colors.white,
                                     radius: 50,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset(
-                                          'lib/Image/profile/pikachu.png'),
+                                      child: Image.network(
+                                        '${(snapshot.data as Map)['userProfileImage']}',
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment.center,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -91,11 +102,11 @@ class _MyScreenState extends State<MyScreen> {
                                 top: 0,
                                 child: IconButton(
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen()),
-                                    );
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeScreen()));
                                   },
                                   icon: Icon(
                                     Icons.home,
@@ -162,7 +173,7 @@ class _MyScreenState extends State<MyScreen> {
                                 decoration: const BoxDecoration(
                                     color: Colors.transparent),
                                 child: const Text(
-                                  '안녕하세요 피카츄 입니다. 만나서 반가워용',
+                                  '안녕하세요!  \n운영자 MASTER😎 입니다.',
                                   style: TextStyle(color: Colors.white),
                                   textAlign: TextAlign.justify,
                                 ),

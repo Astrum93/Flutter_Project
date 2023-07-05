@@ -1,6 +1,9 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class EditProfileImage extends StatefulWidget {
   const EditProfileImage({super.key});
@@ -12,6 +15,9 @@ class EditProfileImage extends StatefulWidget {
 class _nameState extends State<EditProfileImage> {
   // Image 저장 변수
   File? pickedImage;
+
+  // 현재 인증된 유저
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   // Image Picker
   void _pickerImage() async {
@@ -26,6 +32,30 @@ class _nameState extends State<EditProfileImage> {
         pickedImage = File(pickedImageFile.path);
       }
     });
+  }
+
+  // Picked Image 저장
+  void _pickedImageSave() async {
+    // 클라우드 스토리지 버킷에 경로 생성
+    final refImage = FirebaseStorage.instance
+        .ref()
+        .child('picked_image')
+        .child('${currentUser!.uid}.png');
+    // 클라우드 스토리지 버킷에 저장
+    await refImage.putFile(pickedImage!);
+
+    // 저장한 이미지 url로 변환
+    final myurl = await refImage.getDownloadURL();
+
+    if (myurl.isNotEmpty) {
+      // Firestore의 UserInfo에 저장
+      await FirebaseFirestore.instance
+          .collection('UserInfo')
+          .doc(currentUser!.uid)
+          .update({
+        'userProfileImage': myurl,
+      });
+    }
   }
 
   @override
@@ -49,6 +79,7 @@ class _nameState extends State<EditProfileImage> {
             ),
           ),
           const SizedBox(height: 30),
+
           // 프로필 이미지
           CircleAvatar(
             radius: 60,
@@ -57,6 +88,7 @@ class _nameState extends State<EditProfileImage> {
                 pickedImage != null ? FileImage(pickedImage!) : null,
           ),
           const SizedBox(height: 2),
+
           // 업로드 버튼
           TextButton(
             onPressed: () {
@@ -68,10 +100,27 @@ class _nameState extends State<EditProfileImage> {
             ),
           ),
           const SizedBox(height: 20),
+
           // 닫기 버튼
           TextButton.icon(
             onPressed: () {
-              Navigator.pop(context);
+              try {
+                if (pickedImage != null) {
+                  _pickedImageSave();
+                }
+                Navigator.pop(context);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      '이미지가 선택되지 않았습니다.',
+                      textAlign: TextAlign.center,
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+                Navigator.pop(context);
+              }
             },
             icon: const Icon(Icons.close),
             label: const Text(

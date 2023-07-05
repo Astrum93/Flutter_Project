@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+    _getUserInfo();
   }
 
   // 현재 유저 정보를 가져오는 함수
@@ -97,15 +98,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   },
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    radius: 17,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        'lib/Image/Logo/NAspace.png',
-                      ),
-                    ),
+                  child: FutureBuilder(
+                    future: _getUserInfo(),
+                    builder: (context, snapshot) {
+                      return snapshot.hasData
+                          ? CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: 17,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                    '${(snapshot.data as Map)['userProfileImage']}'),
+                              ),
+                            )
+                          : const Center(child: CircularProgressIndicator());
+                    },
                   ),
                 ),
               ],
@@ -183,8 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(50),
-                                            child: Image.asset(
-                                                'lib/Image/Logo/NAspace.png'),
+                                            child: Image.network(
+                                                '${(snapshot.data as Map)['userProfileImage']}'),
                                           ),
                                         ),
                                       ),
