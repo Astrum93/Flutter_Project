@@ -37,7 +37,8 @@ class _MyScreenState extends State<MyScreen> {
       },
     );
   }
-
+  
+  // User 정보 불러오기
   @override
   void initState() {
     // TODO: implement initState
