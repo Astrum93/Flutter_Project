@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:naspace/Edit%20Image/edit_profile.dart';
+import 'package:naspace/Profile_Edit/edit_profile.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:naspace/Profile_Edit/edit_profileBG%20.dart';
+import 'package:naspace/Profile_Edit/edit_profile_introduce.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
 
 class MyScreen extends StatefulWidget {
@@ -26,7 +29,7 @@ class _MyScreenState extends State<MyScreen> {
   }
 
   // 이미지 수정 팝업창
-  void showAlert(BuildContext context) {
+  void showAlert_profile(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -37,7 +40,33 @@ class _MyScreenState extends State<MyScreen> {
       },
     );
   }
-  
+
+  // 프로필 배경 화면 수정
+  void showAlert_profileBG(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Dialog(
+          backgroundColor: Colors.transparent,
+          child: EditProfileBgImage(),
+        );
+      },
+    );
+  }
+
+  // 프로필 소개 수정
+  void showAlert_profile_introduce(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Dialog(
+          backgroundColor: Colors.transparent,
+          child: EditProfileIntroduce(),
+        );
+      },
+    );
+  }
+
   // User 정보 불러오기
   @override
   void initState() {
@@ -63,17 +92,22 @@ class _MyScreenState extends State<MyScreen> {
                             clipBehavior: Clip.none,
                             children: [
                               // 프로필 배경
-                              Container(
-                                width: 500,
-                                height: 200,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        'lib/Image/Background/universe1.jpg'),
+                              GestureDetector(
+                                onTap: () {
+                                  showAlert_profileBG(context);
+                                },
+                                child: Container(
+                                  width: 500,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                          '${(snapshot.data as Map)['userProfileImage']}'),
+                                    ),
                                   ),
+                                  child: const Text(' '),
                                 ),
-                                child: const Text(' '),
                               ),
 
                               // 프로필 사진
@@ -83,7 +117,7 @@ class _MyScreenState extends State<MyScreen> {
                                 bottom: -50,
                                 child: GestureDetector(
                                   onTap: () {
-                                    showAlert(context);
+                                    showAlert_profile(context);
                                   },
                                   child: CircleAvatar(
                                     backgroundColor: Colors.white,
@@ -164,21 +198,27 @@ class _MyScreenState extends State<MyScreen> {
                             ],
                           ),
                           const SizedBox(height: 20),
-
+                          
+                          // 프로필 소개 
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 350,
-                                height: 100,
-                                decoration: const BoxDecoration(
-                                    color: Colors.transparent),
-                                child: const Text(
-                                  '안녕하세요!  \n운영자 MASTER😎 입니다.',
-                                  style: TextStyle(color: Colors.white),
-                                  textAlign: TextAlign.justify,
+                              GestureDetector(
+                                onTap: () {
+                                  showAlert_profile_introduce(context);
+                                },
+                                child: Container(
+                                  width: 350,
+                                  height: 100,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.transparent),
+                                  child: const Text(
+                                    '안녕하세요!  \n운영자 MASTER😎 입니다.',
+                                    style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.justify,
+                                  ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),

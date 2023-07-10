@@ -5,14 +5,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class EditProfileImage extends StatefulWidget {
-  const EditProfileImage({super.key});
+class EditProfileBgImage extends StatefulWidget {
+  const EditProfileBgImage({super.key});
 
   @override
-  State<EditProfileImage> createState() => _nameState();
+  State<EditProfileBgImage> createState() => _nameState();
 }
 
-class _nameState extends State<EditProfileImage> {
+class _nameState extends State<EditProfileBgImage> {
   // Image 저장 변수
   File? pickedImage;
 
@@ -40,7 +40,7 @@ class _nameState extends State<EditProfileImage> {
     final refImage = FirebaseStorage.instance
         .ref()
         .child('picked_image')
-        .child('${currentUser!.uid}.png');
+        .child('${currentUser!.uid}_profileBG.png');
     // 클라우드 스토리지 버킷에 저장
     await refImage.putFile(pickedImage!);
 
@@ -53,7 +53,7 @@ class _nameState extends State<EditProfileImage> {
           .collection('UserInfo')
           .doc(currentUser!.uid)
           .update({
-        'userProfileImage': myurl,
+        'userProfileBgImage': myurl,
       });
     }
   }
@@ -72,7 +72,7 @@ class _nameState extends State<EditProfileImage> {
       child: Column(
         children: [
           const Text(
-            '프로필 이미지 변경',
+            '프로필 배경 이미지 변경',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
