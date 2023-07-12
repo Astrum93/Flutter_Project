@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:naspace/Screen/MyScreen.dart';
 
 class EditProfileImage extends StatefulWidget {
   const EditProfileImage({super.key});
@@ -108,7 +109,12 @@ class _nameState extends State<EditProfileImage> {
                 if (pickedImage != null) {
                   _pickedImageSave();
                 }
-                Navigator.pop(context);
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyScreen(),
+                      ),
+                    );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

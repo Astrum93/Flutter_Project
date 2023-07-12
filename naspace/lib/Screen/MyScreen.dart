@@ -133,6 +133,8 @@ class _MyScreenState extends State<MyScreen> {
                                   ),
                                 ),
                               ),
+
+                              // Home 버튼
                               Positioned(
                                 top: 0,
                                 child: IconButton(
@@ -198,8 +200,8 @@ class _MyScreenState extends State<MyScreen> {
                             ],
                           ),
                           const SizedBox(height: 20),
-                          
-                          // 프로필 소개 
+
+                          // 프로필 소개
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -210,11 +212,14 @@ class _MyScreenState extends State<MyScreen> {
                                 child: Container(
                                   width: 350,
                                   height: 100,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey.withOpacity(0.4),
+                                      ),
                                       color: Colors.transparent),
-                                  child: const Text(
-                                    '안녕하세요!  \n운영자 MASTER😎 입니다.',
-                                    style: TextStyle(color: Colors.white),
+                                  child: Text(
+                                    '${(snapshot.data as Map)['userProfileInfo']}',
+                                    style: const TextStyle(color: Colors.white),
                                     textAlign: TextAlign.justify,
                                   ),
                                 ),

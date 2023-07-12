@@ -111,7 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     '${(snapshot.data as Map)['userProfileImage']}'),
                               ),
                             )
-                          : const Center(child: CircularProgressIndicator());
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                            );
                     },
                   ),
                 ),
