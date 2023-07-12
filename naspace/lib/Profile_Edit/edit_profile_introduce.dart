@@ -102,13 +102,11 @@ class _nameState extends State<EditProfileIntroduce> {
                   });
 
                   try {
-                    // Firestore의 UserInfo에 저장
+                    // Firestore의 UserInfo에 update
                     await FirebaseFirestore.instance
                         .collection('UserInfo')
                         .doc(currentUser!.uid)
                         .update({'userProfileInfo': profileInfo});
-
-                    // User 등록이 됬을 경우
 
                     Navigator.push(
                       context,
