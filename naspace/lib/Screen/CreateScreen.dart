@@ -1,7 +1,9 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:naspace/Widget/ShortContainerLine.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({super.key});
@@ -69,7 +71,7 @@ class _CreateScreenState extends State<CreateScreen> {
                               top: 100,
                               left: 170,
                               child: Text(
-                                '${(snapshot.data as Map)['userName']} ,',
+                                '${(snapshot.data as Map)['userName']}님',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -104,8 +106,52 @@ class _CreateScreenState extends State<CreateScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
-                        const Row(),
+                        const SizedBox(height: 210),
+                        const shortContainerLine(color: Colors.amber),
+                        const SizedBox(height: 10),
+
+                        // 제목
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '게시물 작성',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        const shortContainerLine(color: Colors.amber),
+                        const SizedBox(height: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            DottedBorder(
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width - 20,
+                                child: FadeInImage.assetNetwork(
+                                    fit: BoxFit.cover,
+                                    placeholder: 'lib/Image/Logo/NAspace2.png',
+                                    image: (snapshot.data
+                                        as Map)['userProfileBgImage']),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+
+                            // 이미지 등록 버튼
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration:
+                                      const BoxDecoration(color: Colors.white),
+                                  child: const Text('이미지 등록')),
+                            )
+                          ],
+                        )
                       ],
                     ),
                   ),
