@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/ShortContainerLine.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -92,13 +93,17 @@ class _CreateScreenState extends State<CreateScreen> {
                               ),
                             ),
                             Positioned(
-                              top: 20,
-                              right: 0,
-                              child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
+                              top: 30,
+                              right: 5,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MyScreen()));
                                 },
-                                icon: const Icon(
+                                child: const Icon(
                                   Icons.arrow_back_rounded,
                                   color: Colors.white,
                                 ),
@@ -132,11 +137,10 @@ class _CreateScreenState extends State<CreateScreen> {
                             DottedBorder(
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width - 20,
-                                child: FadeInImage.assetNetwork(
-                                    fit: BoxFit.cover,
-                                    placeholder: 'lib/Image/Logo/NAspace2.png',
-                                    image: (snapshot.data
-                                        as Map)['userProfileBgImage']),
+                                child: Image.network(
+                                  '${(snapshot.data as Map)['userProfileBgImage']}',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             const SizedBox(height: 5),

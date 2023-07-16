@@ -13,7 +13,7 @@ class JoinScreen extends StatefulWidget {
 
 class _JoinScreenState extends State<JoinScreen> {
   // 로딩 스피너 상태 변수
-  bool _loading = false;
+  final bool _loading = false;
 //////////////////////////////////         FirebaseAuth           ///////////////////////////////////////////////////
   // Firebase Authentication Instance
   final _authentication = FirebaseAuth.instance;
@@ -29,6 +29,8 @@ class _JoinScreenState extends State<JoinScreen> {
   String userPassword = '';
   String userPasswordCheck = '';
   String userPhoneNumber = '';
+  String contentsImage = '';
+  String contents = '';
 
   void tryValidation() {
     final isValid = formKey.currentState!.validate();
@@ -320,9 +322,6 @@ class _JoinScreenState extends State<JoinScreen> {
                             // 회원가입 버튼
                             InkWell(
                               onTap: () async {
-                                setState(() {
-                                  _loading = true;
-                                });
                                 // Validate 실행 함수
                                 tryValidation();
 
@@ -344,6 +343,15 @@ class _JoinScreenState extends State<JoinScreen> {
                                     'userPhomeNumber': userPhoneNumber
                                   });
 
+                                  // Firestore의 UserInfo에 저장
+                                  await FirebaseFirestore.instance
+                                      .collection('UserContents')
+                                      .doc(joinedUser.user!.uid)
+                                      .set({
+                                    'userContents': contents,
+                                    'userContentsImage': contentsImage,
+                                  });
+
                                   // User 등록이 됬을 경우
                                   if (joinedUser.user != null) {
                                     Navigator.push(
@@ -353,9 +361,6 @@ class _JoinScreenState extends State<JoinScreen> {
                                             const LogInScreen(),
                                       ),
                                     );
-                                    setState(() {
-                                      _loading = false;
-                                    });
                                   }
                                 } catch (e) {
                                   print(e);
