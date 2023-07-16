@@ -146,8 +146,12 @@ class _CreateScreenState extends State<CreateScreen> {
                               onTap: () {},
                               child: Container(
                                   padding: const EdgeInsets.all(4),
-                                  decoration:
-                                      const BoxDecoration(color: Colors.white),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(5),
+                                    ),
+                                  ),
                                   child: const Text('이미지 등록')),
                             )
                           ],
