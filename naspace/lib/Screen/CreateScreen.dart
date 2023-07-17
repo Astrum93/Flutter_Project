@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:naspace/Profile_Edit/edit_ContentsImage.dart';
+import 'package:naspace/Profile_Edit/edit_Contents_Image.dart';
 import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/ShortContainerLine.dart';
 
@@ -19,8 +17,8 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  //
-  final bool _selected = false;
+  // 이미지 등록 유무
+  final bool _selected = true;
 
   // Firebase 인증된 uid
   final _uid = FirebaseAuth.instance.currentUser!.uid;
@@ -72,45 +70,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   // 현재 인증된 유저
   final currentUser = FirebaseAuth.instance.currentUser;
-
-  // Image Picker
-  void _pickerImage() async {
-    final imagePicker = ImagePicker();
-    final pickedImageFile = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 100,
-      maxHeight: 300,
-    );
-    setState(() {
-      if (pickedImageFile != null) {
-        pickedImage = File(pickedImageFile.path);
-      }
-    });
-  }
-
-  // Picked Image 저장
-  void _pickedImageSave() async {
-    // 클라우드 스토리지 버킷에 경로 생성
-    final refImage = FirebaseStorage.instance
-        .ref()
-        .child('picked_image')
-        .child('${currentUser!.uid}_ContentsImage.png');
-    // 클라우드 스토리지 버킷에 저장
-    await refImage.putFile(pickedImage!);
-
-    // 저장한 이미지 url로 변환
-    final myurl = await refImage.getDownloadURL();
-
-    if (myurl.isNotEmpty) {
-      // Firestore의 UserInfo에 저장
-      await FirebaseFirestore.instance
-          .collection('UserContents')
-          .doc(currentUser!.uid)
-          .update({
-        'userContentsImage': myurl,
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -219,7 +178,7 @@ class _CreateScreenState extends State<CreateScreen> {
                             // 게시물 이미지
                             GestureDetector(
                               onTap: () {
-                                _pickerImage();
+                                showAlert_Contents(context);
                               },
                               child: DottedBorder(
                                 borderType: BorderType.RRect,
@@ -230,33 +189,24 @@ class _CreateScreenState extends State<CreateScreen> {
                                 child: FutureBuilder(
                                   future: _getUserContents(),
                                   builder: (context, snapshot) {
-                                    return Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                          color: Colors.blue.shade50
-                                              .withOpacity(.1),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
-                                            Icons.drive_folder_upload_outlined,
-                                            color: Colors.blue,
-                                            size: 40,
-                                          ),
-                                          const SizedBox(height: 15),
-                                          Text(
-                                            'Select your file',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.grey.shade400),
-                                          ),
-                                        ],
-                                      ),
-                                    );
+                                    return snapshot.hasData
+                                        ? Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 200,
+                                            decoration: BoxDecoration(
+                                                color: Colors.blue.shade50
+                                                    .withOpacity(.1),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Image.network(
+                                              '${(snapshot.data as Map)['userContentsImage']}',
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )
+                                        : const Center(
+                                            child: CircularProgressIndicator());
                                   },
                                 ),
                               ),

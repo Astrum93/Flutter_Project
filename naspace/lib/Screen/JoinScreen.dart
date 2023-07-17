@@ -30,7 +30,7 @@ class _JoinScreenState extends State<JoinScreen> {
   String userPasswordCheck = '';
   String userPhoneNumber = '';
   String contentsImage = '';
-  String contents = '';
+  String contents = '내용을 입력해 주세요.';
 
   void tryValidation() {
     final isValid = formKey.currentState!.validate();
