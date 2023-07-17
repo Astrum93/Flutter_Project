@@ -98,7 +98,7 @@ class _MyScreenState extends State<MyScreen> {
                                 showAlert_profileBG(context);
                               },
                               child: Container(
-                                width: 500,
+                                width: MediaQuery.of(context).size.width,
                                 height: 200,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
