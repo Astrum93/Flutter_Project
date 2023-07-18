@@ -17,9 +17,6 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  // 이미지 등록 유무
-  final bool _selected = true;
-
   // Firebase 인증된 uid
   final _uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -203,8 +200,31 @@ class _CreateScreenState extends State<CreateScreen> {
                                             child: Image.network(
                                               '${(snapshot.data as Map)['userContentsImage']}',
                                               fit: BoxFit.cover,
-                                            ),
-                                          )
+                                            )
+
+                                            // const Column(
+                                            //     mainAxisAlignment:
+                                            //         MainAxisAlignment
+                                            //             .center,
+                                            //     children: [
+                                            //       Icon(
+                                            //         Icons
+                                            //             .file_upload_outlined,
+                                            //         color: Colors.blue,
+                                            //         size: 50,
+                                            //       ),
+                                            //       SizedBox(height: 15),
+                                            //       Text(
+                                            //         'Select your file',
+                                            //         style: TextStyle(
+                                            //             color: Colors.white,
+                                            //             fontWeight:
+                                            //                 FontWeight
+                                            //                     .bold),
+                                            //       ),
+                                            //     ],
+                                            //   ),
+                                            )
                                         : const Center(
                                             child: CircularProgressIndicator());
                                   },
