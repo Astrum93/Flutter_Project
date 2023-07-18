@@ -108,13 +108,16 @@ class _nameState extends State<EditProfileImage> {
               try {
                 if (pickedImage != null) {
                   _pickedImageSave();
+                  setState(() {
+                    MyScreen;
+                  });
                 }
                 Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyScreen(),
-                      ),
-                    );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyScreen(),
+                  ),
+                );
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -125,6 +128,7 @@ class _nameState extends State<EditProfileImage> {
                     backgroundColor: Colors.red,
                   ),
                 );
+
                 Navigator.pop(context);
               }
             },
