@@ -353,7 +353,10 @@ class _CreateScreenState extends State<CreateScreen> {
                                     await FirebaseFirestore.instance
                                         .collection('UserContents')
                                         .doc(currentUser!.uid)
-                                        .update({'userContents': contents});
+                                        .update({
+                                      'userContents': contents,
+                                      'time': Timestamp.now()
+                                    });
 
                                     Navigator.push(
                                       context,
