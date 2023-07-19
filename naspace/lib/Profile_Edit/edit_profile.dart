@@ -108,9 +108,6 @@ class _nameState extends State<EditProfileImage> {
               try {
                 if (pickedImage != null) {
                   _pickedImageSave();
-                  setState(() {
-                    MyScreen;
-                  });
                 }
                 Navigator.push(
                   context,
