@@ -251,7 +251,7 @@ class _MyScreenState extends State<MyScreen> {
                             ),
                             const SizedBox(height: 10),
                             Container(
-                              width: MediaQuery.of(context).size.width - 10,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(10),
@@ -264,7 +264,7 @@ class _MyScreenState extends State<MyScreen> {
                                 ],
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(10),
                                 child: Row(
                                   children: [
                                     CircleAvatar(
@@ -299,12 +299,14 @@ class _MyScreenState extends State<MyScreen> {
                                       ],
                                     ),
                                     const SizedBox(width: 10),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.play_circle_outline_rounded,
-                                        color: Colors.grey,
-                                        size: 45,
+                                    Expanded(
+                                      child: IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          Icons.play_circle_outline_rounded,
+                                          color: Colors.grey,
+                                          size: 45,
+                                        ),
                                       ),
                                     ),
                                   ],
