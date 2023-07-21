@@ -216,7 +216,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            // 게시물 이미지
+                            // 게시물 이미지 출력
                             GestureDetector(
                               onTap: () async {
                                 try {
