@@ -60,7 +60,7 @@ class _CreateScreenState extends State<CreateScreen> {
   // 현재 인증된 유저
   final currentUser = FirebaseAuth.instance.currentUser;
 
-  // 컨텐츠 이미지 선택
+  // 컨텐츠 이미지
   _selectContentsImage() async {
     final imagePicker = ImagePicker();
     final pickedImageFile = await imagePicker.pickImage(
