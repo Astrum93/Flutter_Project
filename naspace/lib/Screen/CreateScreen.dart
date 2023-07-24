@@ -128,6 +128,8 @@ class _CreateScreenState extends State<CreateScreen> {
                               width: MediaQuery.of(context).size.width,
                               height: 200,
                             ),
+
+                            // 프로필 사진
                             Positioned(
                               top: 30,
                               left: 10,
@@ -144,6 +146,8 @@ class _CreateScreenState extends State<CreateScreen> {
                                 ),
                               ),
                             ),
+
+                            // 프로필 아이디
                             Positioned(
                               top: 100,
                               left: 170,
@@ -168,6 +172,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                 ),
                               ),
                             ),
+
                             // Home 버튼
                             Positioned(
                               top: 15,
@@ -213,10 +218,11 @@ class _CreateScreenState extends State<CreateScreen> {
                         // 게시물 제목 입력
 
                         const SizedBox(height: 10),
+
+                        // 게시물 이미지
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            // 게시물 이미지
                             GestureDetector(
                               onTap: () async {
                                 try {
