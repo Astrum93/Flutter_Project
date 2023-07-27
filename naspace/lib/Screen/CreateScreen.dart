@@ -105,7 +105,7 @@ class _CreateScreenState extends State<CreateScreen> {
   // 컨텐츠 내용 저장할 변수
   String contents = '';
 
-  // 로딩 스피너 상태 변수.
+  // 로딩 스피너 상태 변수
   bool _loading = false;
 
   @override
