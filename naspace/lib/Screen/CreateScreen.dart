@@ -89,7 +89,7 @@ class _CreateScreenState extends State<CreateScreen> {
       await FirebaseFirestore.instance
           .collection('UserContents')
           .doc(currentUser!.uid)
-          .update({
+          .set({
         'userContentsImage': myurl,
       });
     }
