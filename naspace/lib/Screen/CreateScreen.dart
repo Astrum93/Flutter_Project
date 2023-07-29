@@ -298,7 +298,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         ),
                         const SizedBox(height: 5),
 
-                        // 컨텐츠 내용 입력
+                        // 컨텐츠 내용 입력.
                         Form(
                           key: formKey,
                           child: Column(
