@@ -342,7 +342,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
                                 const SizedBox(height: 20),
 
-                                // 닫기 버튼.
+                                // 닫기 버튼
                                 TextButton.icon(
                                   onPressed: () async {
                                     setState(() {
