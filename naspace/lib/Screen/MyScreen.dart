@@ -7,6 +7,7 @@ import 'package:naspace/Profile_Edit/edit_profileBG%20.dart';
 import 'package:naspace/Profile_Edit/edit_profile_introduce.dart';
 import 'package:naspace/Screen/CreateScreen.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
+import 'package:naspace/Screen/PostScreen.dart';
 
 class MyScreen extends StatefulWidget {
   const MyScreen({super.key});
@@ -323,35 +324,44 @@ class _MyScreenState extends State<MyScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             // 게시물 생성 버튼 ( Music recommand )
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.white.withOpacity(0.2),
-                                    blurRadius: 7,
-                                  )
-                                ],
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(10),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.music_note_rounded,
-                                      color: Colors.grey,
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      'Music recommand',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PostScreen()));
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.white.withOpacity(0.2),
+                                      blurRadius: 7,
+                                    )
                                   ],
+                                ),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.music_note_rounded,
+                                        color: Colors.grey,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        'Music recommand',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
