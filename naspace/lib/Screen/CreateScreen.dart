@@ -1,17 +1,15 @@
 // ignore_for_file: unused_field
 
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/ShortContainerLine.dart';
+import 'package:path/path.dart' as path;
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({super.key});
@@ -24,23 +22,34 @@ class _CreateScreenState extends State<CreateScreen> {
   // Firebase 인증된 uid
   final _uid = FirebaseAuth.instance.currentUser!.uid;
 
+  // 현재 인증된 유저
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
+  // Firebase Storage instance
+  final _storage = FirebaseStorage.instance;
+
+  final _store = FirebaseFirestore.instance;
+
   // FireStore collection 참조 변수
-  CollectionReference userInfo =
+  final CollectionReference _userInfo =
       FirebaseFirestore.instance.collection('UserInfo');
 
   // FireStore collection 참조 변수
-  CollectionReference userContents =
+  final CollectionReference _userContents =
       FirebaseFirestore.instance.collection('UserContents');
+
+  // Image 저장 변수
+  File? pickedImage;
 
   // 현재 유저 정보를 불러오는 함수
   _getUserInfo() async {
-    var userinfo = await userInfo.doc(_uid).get();
+    var userinfo = await _userInfo.doc(_uid).get();
     return userinfo.data();
   }
 
   // 현재 유저 정보를 불러오는 함수
   _getUserContents() async {
-    var usercontents = await userContents.doc(_uid).get();
+    var usercontents = await _userContents.doc(_uid).get();
     return usercontents.data();
   }
 
@@ -53,14 +62,8 @@ class _CreateScreenState extends State<CreateScreen> {
     _getUserContents();
   }
 
-  // Image 저장 변수
-  File? pickedImage;
-
-  // 현재 인증된 유저
-  final currentUser = FirebaseAuth.instance.currentUser;
-
   // 컨텐츠 이미지
-  _selectContentsImage() async {
+  _pickContentsImage() async {
     final imagePicker = ImagePicker();
     final pickedImageFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
@@ -72,34 +75,112 @@ class _CreateScreenState extends State<CreateScreen> {
         pickedImage = File(pickedImageFile.path);
       }
     });
+  }
+
+  // 이미지 미리보기
+  Widget _buildImagePreview() {
+    if (pickedImage != null) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        decoration: BoxDecoration(
+          color: Colors.blue.shade50.withOpacity(.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Image.file(
+          pickedImage!,
+          fit: BoxFit.cover,
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.file_upload_outlined,
+              color: Colors.blue,
+              size: 50,
+            ),
+            SizedBox(height: 15),
+            Text(
+              'Select your file',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+  // 게시글 작성 후 저장
+  Future<void> _createContentsAndPost() async {
+    if (pickedImage == null) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('오류'),
+            content: const Text('이미지를 선택해주세요.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('확인'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+    final content = _contentController.text;
+
+    // 이미지를 Firebase Storage에 업로드
+    final fileName = path.basename(pickedImage!.path);
 
     // 클라우드 스토리지 버킷에 경로 생성
-    final refContentsImage = FirebaseStorage.instance
-        .ref()
-        .child('picked_contents_image')
-        .child('${currentUser!.uid}_ContentsImage.png');
-    // 클라우드 스토리지 버킷에 저장
+    final refContentsImage =
+        _storage.ref().child('${_currentUser!.uid}_Contents').child(fileName);
     await refContentsImage.putFile(pickedImage!);
+
+    // 게시글 정보를 Firestore에 저장
 
     // 저장한 이미지 url로 변환
     final myurl = await refContentsImage.getDownloadURL();
 
-    if (myurl.isNotEmpty) {
-      // Firestore의 UserInfo에 저장
-      await FirebaseFirestore.instance
-          .collection('UserContents')
-          .doc(currentUser!.uid)
-          .set({
-        'userContentsImage': myurl,
-      });
-    }
-    setState(() {
-      CreateScreen;
+    // Firestore의 UserInfo에 저장
+    await _store
+        .collection('Contents')
+        .doc(_currentUser!.uid)
+        .collection('UserContents')
+        .add({
+      'ContentsImage': myurl,
+      'Contents': content,
+      //'time': TimeOfDay.now,
+      'id': _userInfo.id
     });
+
+    //작성 완료 후 입력 필드 초기화
+
+    _contentController.clear();
+    setState(() {
+      pickedImage = null;
+    });
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const MyScreen()));
   }
 
   // Form Key
   final formKey = GlobalKey<FormState>();
+
+  // 게시글 내용 컨트롤러
+  final TextEditingController _contentController = TextEditingController();
 
   // 컨텐츠 내용 저장할 변수
   String contents = '';
@@ -214,11 +295,7 @@ class _CreateScreenState extends State<CreateScreen> {
                           ),
                           const SizedBox(height: 10),
                           const shortContainerLine(color: Colors.amber),
-                          const SizedBox(height: 20),
-
-                          // 게시물 제목 입력
-
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 30),
 
                           // 게시물 이미지
                           Column(
@@ -228,7 +305,7 @@ class _CreateScreenState extends State<CreateScreen> {
                               GestureDetector(
                                 onTap: () async {
                                   try {
-                                    _selectContentsImage();
+                                    _pickContentsImage();
                                   } catch (e) {
                                     const CircularProgressIndicator();
                                   }
@@ -239,53 +316,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   dashPattern: const [10, 4],
                                   strokeCap: StrokeCap.round,
                                   color: Colors.blue.shade400,
-                                  child: FutureBuilder(
-                                    future: _getUserContents(),
-                                    builder: (context, snapshot) {
-                                      return pickedImage != null
-                                          ? Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: 200,
-                                              decoration: BoxDecoration(
-                                                color: Colors.blue.shade50
-                                                    .withOpacity(.1),
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: Image.file(
-                                                pickedImage!,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: 200,
-                                              child: const Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons.file_upload_outlined,
-                                                    color: Colors.blue,
-                                                    size: 50,
-                                                  ),
-                                                  SizedBox(height: 15),
-                                                  Text(
-                                                    'Select your file',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                    },
-                                  ),
+                                  child: _buildImagePreview(),
                                 ),
                               ),
                             ],
@@ -293,105 +324,49 @@ class _CreateScreenState extends State<CreateScreen> {
                           const SizedBox(height: 5),
 
                           // 컨텐츠 내용 입력.
-                          Form(
-                            key: formKey,
-                            child: Column(
-                              children: [
-                                // 프로필 소개 입력 TextFormField
-                                DottedBorder(
-                                  borderType: BorderType.RRect,
-                                  radius: const Radius.circular(10),
-                                  dashPattern: const [10, 4],
-                                  strokeCap: StrokeCap.round,
-                                  color: Colors.blue.shade400,
+                          Column(
+                            children: [
+                              // 게시물 내용 입력
+                              DottedBorder(
+                                borderType: BorderType.RRect,
+                                radius: const Radius.circular(10),
+                                dashPattern: const [10, 4],
+                                strokeCap: StrokeCap.round,
+                                color: Colors.blue.shade400,
 
-                                  // 입력 창
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.text,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                    onSaved: (value) {
-                                      contents = value!;
-                                    },
-                                    onChanged: (value) {
-                                      contents = value;
-                                    },
-                                    key: const ValueKey(1),
-                                    decoration: const InputDecoration(
-                                      hintText: '내용을 입력해 주세요.',
-                                      hintStyle: TextStyle(color: Colors.grey),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.transparent),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.transparent),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      contentPadding: EdgeInsets.all(10),
-                                    ),
+                                // 입력 창
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.grey),
+                                  controller: _contentController,
+                                  decoration: const InputDecoration(
+                                    hintText: '내용을 입력해 주세요.',
+                                    hintStyle: TextStyle(color: Colors.grey),
                                   ),
                                 ),
+                              ),
 
-                                const SizedBox(height: 20),
+                              const SizedBox(height: 20),
 
-                                // 닫기 버튼 ( time , contents 저장)
-                                TextButton.icon(
-                                  onPressed: () async {
-                                    setState(() {
-                                      _loading = true;
-                                    });
+                              // Create 버튼 ( time , contents 저장)
+                              TextButton.icon(
+                                onPressed: () async {
+                                  setState(() {
+                                    _loading = true;
+                                  });
 
-                                    try {
-                                      // Firestore의 UserInfo에 update
-                                      await FirebaseFirestore.instance
-                                          .collection('UserContents')
-                                          .doc(currentUser!.uid)
-                                          .update({
-                                        'userContents': contents,
-                                        'time': Timestamp.now()
-                                      });
+                                  await _createContentsAndPost();
 
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MyScreen(),
-                                        ),
-                                      );
-                                      setState(() {
-                                        _loading = false;
-                                      });
-                                    } catch (e) {
-                                      print(e);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            '게시글이 정상적으로 작성되지 않았습니다.\n입력하신 내용을 확인해 주세요.',
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          backgroundColor: Colors.red,
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  icon:
-                                      const Icon(Icons.arrow_circle_up_rounded),
-                                  label: const Text(
-                                    'Create',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                  setState(() {
+                                    _loading = false;
+                                  });
+                                },
+                                icon: const Icon(Icons.arrow_circle_up_rounded),
+                                label: const Text(
+                                  'Create',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           )
                         ],
                       ),

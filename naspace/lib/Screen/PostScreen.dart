@@ -61,16 +61,37 @@ class _PostScreenState extends State<PostScreen> {
 
   Widget _buildImagePreview() {
     if (_imageFile != null) {
-      return Image.file(
-        _imageFile!,
-        height: 150,
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        decoration: BoxDecoration(
+          color: Colors.blue.shade50.withOpacity(.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Image.file(
+          _imageFile!,
+          fit: BoxFit.cover,
+        ),
       );
     } else {
-      return Container(
-        height: 150,
-        color: Colors.grey[300],
-        child: const Center(
-          child: Text('이미지를 선택해주세요.'),
+      return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.file_upload_outlined,
+              color: Colors.blue,
+              size: 50,
+            ),
+            SizedBox(height: 15),
+            Text(
+              'Select your file',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       );
     }
