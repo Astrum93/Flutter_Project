@@ -161,8 +161,6 @@ class _CreateScreenState extends State<CreateScreen> {
         .add({
       'ContentsImage': myurl,
       'Contents': content,
-      //'time': TimeOfDay.now,
-      'id': _userInfo.id
     });
 
     //작성 완료 후 입력 필드 초기화
