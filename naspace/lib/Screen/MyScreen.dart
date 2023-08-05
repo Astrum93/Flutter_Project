@@ -411,6 +411,14 @@ class _MyScreenState extends State<MyScreen> {
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          '🔥 게시글',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
                         )
                       ],
                     ),

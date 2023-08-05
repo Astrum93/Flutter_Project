@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:naspace/Screen/MyScreen.dart';
 import 'package:naspace/Widget/ShortContainerLine.dart';
 import 'package:path/path.dart' as path;
@@ -23,7 +24,7 @@ class _CreateScreenState extends State<CreateScreen> {
   final _uid = FirebaseAuth.instance.currentUser!.uid;
 
   // 현재 인증된 유저
-  final _currentUser = FirebaseAuth.instance.currentUser;
+  final User? _currentUser = FirebaseAuth.instance.currentUser;
 
   // Firebase Storage instance
   final _storage = FirebaseStorage.instance;
@@ -33,6 +34,11 @@ class _CreateScreenState extends State<CreateScreen> {
   // FireStore collection 참조 변수
   final CollectionReference _userInfo =
       FirebaseFirestore.instance.collection('UserInfo');
+
+  final getUserData = FirebaseFirestore.instance
+      .collection('UserInfo')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .get();
 
   // FireStore collection 참조 변수
   final CollectionReference _userContents =
@@ -155,12 +161,14 @@ class _CreateScreenState extends State<CreateScreen> {
 
     // Firestore의 UserInfo에 저장
     await _store
-        .collection('Contents')
-        .doc(_currentUser!.uid)
         .collection('UserContents')
+        .doc(_currentUser!.uid)
+        .collection('Contents')
         .add({
       'ContentsImage': myurl,
       'Contents': content,
+      'time': Timestamp.now(),
+      'id': _uid
     });
 
     //작성 완료 후 입력 필드 초기화
@@ -190,189 +198,193 @@ class _CreateScreenState extends State<CreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: FutureBuilder(
-        future: _getUserInfo(),
-        builder: (context, snapshot) {
-          return snapshot.hasData
-              ? SingleChildScrollView(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                height: 200,
-                              ),
+      body: ModalProgressHUD(
+        inAsyncCall: _loading,
+        child: FutureBuilder(
+          future: _getUserInfo(),
+          builder: (context, snapshot) {
+            return snapshot.hasData
+                ? SingleChildScrollView(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 200,
+                                ),
 
-                              // 프로필 사진
-                              Positioned(
-                                top: 30,
-                                left: 10,
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  radius: 70,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(70),
-                                    child: Image.network(
-                                      '${(snapshot.data as Map)['userProfileImage']}',
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.center,
+                                // 프로필 사진
+                                Positioned(
+                                  top: 30,
+                                  left: 10,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    radius: 70,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(70),
+                                      child: Image.network(
+                                        '${(snapshot.data as Map)['userProfileImage']}',
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment.center,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
 
-                              // 프로필 아이디
-                              Positioned(
-                                top: 100,
-                                left: 170,
-                                child: Text(
-                                  '${(snapshot.data as Map)['userName']}님',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                                // 프로필 아이디
+                                Positioned(
+                                  top: 100,
+                                  left: 170,
+                                  child: Text(
+                                    '${(snapshot.data as Map)['userName']}님',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const Positioned(
-                                top: 140,
-                                left: 170,
-                                child: Text(
-                                  '어떤 음악을 추천 받고 싶나요?',
+                                const Positioned(
+                                  top: 140,
+                                  left: 170,
+                                  child: Text(
+                                    '어떤 음악을 추천 받고 싶나요?',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+
+                                // Home 버튼
+                                Positioned(
+                                  top: 15,
+                                  right: 10,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MyScreen()));
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_back_rounded,
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            const shortContainerLine(color: Colors.amber),
+                            const SizedBox(height: 10),
+
+                            // 게시물 작성
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '게시물 작성',
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                              ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            const shortContainerLine(color: Colors.amber),
+                            const SizedBox(height: 30),
 
-                              // Home 버튼
-                              Positioned(
-                                top: 15,
-                                right: 10,
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const MyScreen()));
+                            // 게시물 이미지
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                // 게시물 이미지 출력
+                                GestureDetector(
+                                  onTap: () async {
+                                    try {
+                                      _pickContentsImage();
+                                    } catch (e) {
+                                      const CircularProgressIndicator();
+                                    }
                                   },
-                                  icon: const Icon(
-                                    Icons.arrow_back_rounded,
-                                    color: Colors.white,
-                                    size: 30,
+                                  child: DottedBorder(
+                                    borderType: BorderType.RRect,
+                                    radius: const Radius.circular(10),
+                                    dashPattern: const [10, 4],
+                                    strokeCap: StrokeCap.round,
+                                    color: Colors.blue.shade400,
+                                    child: _buildImagePreview(),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          const shortContainerLine(color: Colors.amber),
-                          const SizedBox(height: 10),
+                              ],
+                            ),
+                            const SizedBox(height: 5),
 
-                          // 게시물 작성
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '게시물 작성',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          const shortContainerLine(color: Colors.amber),
-                          const SizedBox(height: 30),
-
-                          // 게시물 이미지
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              // 게시물 이미지 출력
-                              GestureDetector(
-                                onTap: () async {
-                                  try {
-                                    _pickContentsImage();
-                                  } catch (e) {
-                                    const CircularProgressIndicator();
-                                  }
-                                },
-                                child: DottedBorder(
+                            // 컨텐츠 내용 입력.
+                            Column(
+                              children: [
+                                // 게시물 내용 입력
+                                DottedBorder(
                                   borderType: BorderType.RRect,
                                   radius: const Radius.circular(10),
                                   dashPattern: const [10, 4],
                                   strokeCap: StrokeCap.round,
                                   color: Colors.blue.shade400,
-                                  child: _buildImagePreview(),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 5),
 
-                          // 컨텐츠 내용 입력.
-                          Column(
-                            children: [
-                              // 게시물 내용 입력
-                              DottedBorder(
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(10),
-                                dashPattern: const [10, 4],
-                                strokeCap: StrokeCap.round,
-                                color: Colors.blue.shade400,
-
-                                // 입력 창
-                                child: TextField(
-                                  style: const TextStyle(color: Colors.grey),
-                                  controller: _contentController,
-                                  decoration: const InputDecoration(
-                                    hintText: '내용을 입력해 주세요.',
-                                    hintStyle: TextStyle(color: Colors.grey),
+                                  // 입력 창
+                                  child: TextField(
+                                    style: const TextStyle(color: Colors.grey),
+                                    controller: _contentController,
+                                    decoration: const InputDecoration(
+                                      hintText: '내용을 입력해 주세요.',
+                                      hintStyle: TextStyle(color: Colors.grey),
+                                    ),
                                   ),
                                 ),
-                              ),
 
-                              const SizedBox(height: 20),
+                                const SizedBox(height: 20),
 
-                              // Create 버튼 ( time , contents 저장)
-                              TextButton.icon(
-                                onPressed: () async {
-                                  setState(() {
-                                    _loading = true;
-                                  });
+                                // Create 버튼 ( time , contents 저장)
+                                TextButton.icon(
+                                  onPressed: () async {
+                                    setState(() {
+                                      _loading = true;
+                                    });
 
-                                  await _createContentsAndPost();
+                                    await _createContentsAndPost();
 
-                                  setState(() {
-                                    _loading = false;
-                                  });
-                                },
-                                icon: const Icon(Icons.arrow_circle_up_rounded),
-                                label: const Text(
-                                  'Create',
-                                  style: TextStyle(color: Colors.grey),
+                                    setState(() {
+                                      _loading = false;
+                                    });
+                                  },
+                                  icon:
+                                      const Icon(Icons.arrow_circle_up_rounded),
+                                  label: const Text(
+                                    'Create',
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                )
-              : const Center(child: CircularProgressIndicator());
-        },
+                  )
+                : const Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }
