@@ -30,6 +30,20 @@ class _MyScreenState extends State<MyScreen> {
     return userinfo.data();
   }
 
+  // 컨텐츠 담을 변수
+  List allContents = [];
+  // Contents 데이터 불러오는 함수
+  getContents() async {
+    var usercontents = FirebaseFirestore.instance
+        .collection('Contents')
+        .doc(_uid)
+        .collection('UserContents')
+        .orderBy('id')
+        .get();
+
+    setState(() {});
+  }
+
   // 이미지 수정 팝업창
   void showAlert_profile(BuildContext context) {
     showDialog(
@@ -417,9 +431,35 @@ class _MyScreenState extends State<MyScreen> {
                           '🔥 게시글',
                           style: TextStyle(color: Colors.grey),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                        )
+                        const SizedBox(height: 10),
+                        StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('UserContents')
+                              .doc(_uid)
+                              .collection('Contents')
+                              .snapshots(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            }
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (Context, index) => SizedBox(
+                                  width: MediaQuery.of(context).size.width - 10,
+                                  child: Image.network(
+                                      '${(snapshot.data.docs)['ContentsImage']}'),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
