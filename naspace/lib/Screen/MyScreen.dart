@@ -266,7 +266,7 @@ class _MyScreenState extends State<MyScreen> {
                             ),
                             const SizedBox(height: 10),
                             Container(
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width - 10,
                               decoration: BoxDecoration(
                                 color: Colors.black,
                                 borderRadius: BorderRadius.circular(10),
