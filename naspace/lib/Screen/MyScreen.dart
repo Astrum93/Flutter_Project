@@ -432,6 +432,7 @@ class _MyScreenState extends State<MyScreen> {
                           style: TextStyle(color: Colors.grey),
                         ),
                         const SizedBox(height: 10),
+
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection('UserContents')
@@ -444,18 +445,38 @@ class _MyScreenState extends State<MyScreen> {
                                 ConnectionState.waiting) {
                               return const CircularProgressIndicator();
                             }
+
+                            // 하위 컬렉션 문서들을 리스트로 표시
+                            var subcollectionDocs = snapshot.data!.docs;
+
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              height: 100,
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: snapshot.data.docs.length,
-                                itemBuilder: (Context, index) => SizedBox(
-                                  width: MediaQuery.of(context).size.width - 10,
-                                  child: Image.network(
-                                      '${(snapshot.data.docs)['ContentsImage']}'),
+                              height: 220,
+                              child: GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10.0,
+                                  mainAxisSpacing: 10.0,
                                 ),
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (Context, index) {
+                                  var doc = subcollectionDocs[index];
+                                  var fieldValue = doc.get('ContentsImage');
+                                  return GridTile(
+                                    child: Container(
+                                      width: 250,
+                                      height: 250,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(fieldValue),
+                                        ),
+                                      ),
+                                      child: const Text(''),
+                                    ),
+                                  );
+                                },
                               ),
                             );
                           },
