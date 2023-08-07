@@ -426,12 +426,11 @@ class _MyScreenState extends State<MyScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
                         const Text(
                           '🔥 게시글',
                           style: TextStyle(color: Colors.grey),
                         ),
-                        const SizedBox(height: 10),
 
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
