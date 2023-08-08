@@ -432,6 +432,7 @@ class _MyScreenState extends State<MyScreen> {
                           style: TextStyle(color: Colors.grey),
                         ),
 
+                        // User 게시물
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection('UserContents')
