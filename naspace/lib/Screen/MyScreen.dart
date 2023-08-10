@@ -464,16 +464,18 @@ class _MyScreenState extends State<MyScreen> {
                                   var doc = subcollectionDocs[index];
                                   var fieldValue = doc.get('ContentsImage');
                                   return GridTile(
-                                    child: Container(
-                                      width: 250,
-                                      height: 250,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(fieldValue),
+                                    child: GestureDetector(
+                                      child: Container(
+                                        width: 250,
+                                        height: 250,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(fieldValue),
+                                          ),
                                         ),
+                                        child: const Text(''),
                                       ),
-                                      child: const Text(''),
                                     ),
                                   );
                                 },
