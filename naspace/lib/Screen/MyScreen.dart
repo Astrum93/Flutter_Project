@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:naspace/Profile_Edit/edit_profileBG%20.dart';
 import 'package:naspace/Profile_Edit/edit_profile_introduce.dart';
+import 'package:naspace/Screen/ContentsScreen.dart';
 import 'package:naspace/Screen/CreateScreen.dart';
 import 'package:naspace/Screen/HomeScreen.dart';
 import 'package:naspace/Screen/PostScreen.dart';
@@ -465,6 +466,13 @@ class _MyScreenState extends State<MyScreen> {
                                   var fieldValue = doc.get('ContentsImage');
                                   return GridTile(
                                     child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const contentsScreen()));
+                                      },
                                       child: Container(
                                         width: 250,
                                         height: 250,
