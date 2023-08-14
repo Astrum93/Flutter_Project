@@ -60,6 +60,7 @@ class _contentsScreenState extends State<contentsScreen> {
                               ],
                             ),
                           ),
+                          // 컨텐츠 이미지
                           Container(
                             width: MediaQuery.of(context).size.width - 8,
                             height: 250,
