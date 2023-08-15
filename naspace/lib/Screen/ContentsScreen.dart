@@ -13,6 +13,24 @@ class _contentsScreenState extends State<contentsScreen> {
   // Firebase 인증된 uid
   final _uid = FirebaseAuth.instance.currentUser!.uid;
 
+  // FireStore collection 참조 변수
+  CollectionReference userInfo =
+      FirebaseFirestore.instance.collection('UserInfo');
+
+  // 현재 유저 정보를 불러오는 함수
+  _getUserInfo() async {
+    var userinfo = await userInfo.doc(_uid).get();
+    return userinfo.data();
+  }
+
+  // User 정보 불러오기
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getUserInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +70,46 @@ class _contentsScreenState extends State<contentsScreen> {
                         return Column(
                           children: [
                             const SizedBox(height: 20),
-                            // 유저 프로필 사진과 유저 아이디
-                            const Padding(
-                              padding: EdgeInsets.only(left: 4),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'UserName',
-                                    style: TextStyle(color: Colors.grey),
-                                  )
-                                ],
-                              ),
+
+                            FutureBuilder(
+                              future: _getUserInfo(),
+                              builder: (context, snapshot) {
+                                return snapshot.hasData
+                                    ?
+                                    // 유저 프로필 사진 및 아이디
+                                    Padding(
+                                        padding: const EdgeInsets.only(left: 4),
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              radius: 15,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                child: Image.network(
+                                                  '${(snapshot.data as Map)['userProfileImage']}',
+                                                  fit: BoxFit.cover,
+                                                  alignment: Alignment.center,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 10),
+                                            Text(
+                                              '${(snapshot.data as Map)['userName']}',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    : const CircularProgressIndicator();
+                              },
                             ),
+                            const SizedBox(height: 20),
+
                             // 컨텐츠 이미지
                             Container(
                               width: MediaQuery.of(context).size.width - 8,
