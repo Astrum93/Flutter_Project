@@ -107,6 +107,7 @@ class _contentsScreenState extends State<contentsScreen> {
                                                     ),
                                                   ),
                                                   const SizedBox(width: 10),
+                                                  // 유저 아이디
                                                   Text(
                                                     '${(snapshot.data as Map)['userName']}',
                                                     style: const TextStyle(
@@ -116,6 +117,7 @@ class _contentsScreenState extends State<contentsScreen> {
                                                   ),
                                                 ],
                                               ),
+                                              // 좋아요 버튼
                                               Row(
                                                 children: [
                                                   IconButton(
