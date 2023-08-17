@@ -225,7 +225,7 @@ class _MyScreenState extends State<MyScreen> {
                               '📢 프로필 소개',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             GestureDetector(
                               onTap: () {
                                 showAlert_profile_introduce(context);
@@ -265,7 +265,7 @@ class _MyScreenState extends State<MyScreen> {
                               '🎵 프로필 뮤직',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             Container(
                               width: MediaQuery.of(context).size.width - 10,
                               decoration: BoxDecoration(
@@ -432,6 +432,7 @@ class _MyScreenState extends State<MyScreen> {
                           '🔥 게시글',
                           style: TextStyle(color: Colors.grey),
                         ),
+                        const SizedBox(height: 20),
 
                         // User 게시물
                         StreamBuilder(
@@ -452,7 +453,7 @@ class _MyScreenState extends State<MyScreen> {
                             // GridView.builder
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              height: 220,
+                              height: 250,
                               child: GridView.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
