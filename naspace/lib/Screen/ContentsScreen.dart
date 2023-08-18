@@ -187,6 +187,7 @@ class _contentsScreenState extends State<contentsScreen> {
                                         ),
                                       ],
                                     ),
+                                    // 댓글 더 보기
                                     Row(
                                       children: [
                                         GestureDetector(
