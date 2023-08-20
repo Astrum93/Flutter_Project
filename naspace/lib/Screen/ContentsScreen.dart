@@ -75,7 +75,7 @@ class _contentsScreenState extends State<contentsScreen> {
                           child: Column(
                             children: [
                               const SizedBox(height: 20),
-
+                              // 유저 정보 FutureBuilder
                               FutureBuilder(
                                 future: _getUserInfo(),
                                 builder: (context, snapshot) {
