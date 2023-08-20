@@ -33,6 +33,9 @@ class _contentsScreenState extends State<contentsScreen> {
     _getUserInfo();
   }
 
+  // 좋아요
+  var isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +78,7 @@ class _contentsScreenState extends State<contentsScreen> {
                           child: Column(
                             children: [
                               const SizedBox(height: 20),
+
                               // 유저 정보 FutureBuilder
                               FutureBuilder(
                                 future: _getUserInfo(),
@@ -127,10 +131,16 @@ class _contentsScreenState extends State<contentsScreen> {
                                                   IconButton(
                                                     color: Colors.white,
                                                     iconSize: 25,
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                      Icons
-                                                          .favorite_border_outlined,
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        isLiked = true;
+                                                      });
+                                                    },
+                                                    icon: Icon(
+                                                      isLiked == false
+                                                          ? Icons
+                                                              .favorite_border_outlined
+                                                          : Icons.favorite,
                                                       color: Colors.pink,
                                                     ),
                                                   )

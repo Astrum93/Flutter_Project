@@ -451,6 +451,7 @@ class _MyScreenState extends State<MyScreen> {
                             // 하위 컬렉션 문서들을 리스트로 표시
                             var subcollectionDocs = snapshot.data!.docs;
                             // GridView.builder
+
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: 250,
@@ -462,7 +463,7 @@ class _MyScreenState extends State<MyScreen> {
                                   mainAxisSpacing: 10.0,
                                 ),
                                 itemCount: snapshot.data!.docs.length,
-                                itemBuilder: (Context, index) {
+                                itemBuilder: (context, index) {
                                   var doc = subcollectionDocs[index];
                                   var fieldValue = doc.get('ContentsImage');
                                   return GridTile(
