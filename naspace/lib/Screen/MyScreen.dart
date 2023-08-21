@@ -465,6 +465,8 @@ class _MyScreenState extends State<MyScreen> {
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   var doc = subcollectionDocs[index];
+
+                                  // Contents Image 있는 문서 참조
                                   var fieldValue = doc.get('ContentsImage');
                                   return GridTile(
                                     child: GestureDetector(
