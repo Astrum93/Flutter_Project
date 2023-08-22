@@ -477,6 +477,7 @@ class _MyScreenState extends State<MyScreen> {
                                                 builder: (context) =>
                                                     const contentsScreen()));
                                       },
+                                      // 보여줄 이미지 사이즈
                                       child: Container(
                                         width: 250,
                                         height: 250,
