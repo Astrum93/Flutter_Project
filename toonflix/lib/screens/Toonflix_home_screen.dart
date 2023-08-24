@@ -73,6 +73,8 @@ class ToonflixHomeScreen extends StatelessWidget {
         var webtoon = snapshot.data![index];
         print(index);
         // 1열
+
+        // Webtoon_widget 웹툰 위젯
         return Webtoon(
           title: webtoon.title,
           thumb: webtoon.thumb,
