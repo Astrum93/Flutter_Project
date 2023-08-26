@@ -450,8 +450,8 @@ class _MyScreenState extends State<MyScreen> {
 
                             // 하위 컬렉션 문서들을 리스트로 표시
                             var subcollectionDocs = snapshot.data!.docs;
-                            // GridView.builder
 
+                            // GridView.builder
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: 250,
