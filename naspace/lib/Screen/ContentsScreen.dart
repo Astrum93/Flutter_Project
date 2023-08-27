@@ -202,25 +202,22 @@ class _contentsScreenState extends State<contentsScreen> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {},
-                                          child: Container(
-                                            child: Row(
-                                              children: [
-                                                const Text(
-                                                  "댓글 더보기",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.grey),
-                                                ),
-                                                IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                      Icons.arrow_drop_down),
-                                                  color: Colors.grey,
-                                                ),
-                                              ],
-                                            ),
+                                          child: Row(
+                                            children: [
+                                              const Text(
+                                                "댓글 더보기",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.grey),
+                                              ),
+                                              IconButton(
+                                                onPressed: () {},
+                                                icon: const Icon(
+                                                    Icons.arrow_drop_down),
+                                                color: Colors.grey,
+                                              ),
+                                            ],
                                           ),
                                         )
                                       ],
