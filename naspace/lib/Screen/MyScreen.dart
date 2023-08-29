@@ -455,8 +455,10 @@ class _MyScreenState extends State<MyScreen> {
                             // GridView.builder
                             return SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              height: 250,
+                              height: MediaQuery.of(context).size.height,
                               child: GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
