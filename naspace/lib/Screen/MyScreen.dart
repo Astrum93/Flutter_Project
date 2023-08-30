@@ -435,7 +435,7 @@ class _MyScreenState extends State<MyScreen> {
                         const SizedBox(height: 20),
 
                         // User 게시물
-                        // 커스텀 스크롤
+
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection('UserContents')
