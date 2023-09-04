@@ -435,7 +435,6 @@ class _MyScreenState extends State<MyScreen> {
                         const SizedBox(height: 20),
 
                         // User 게시물
-
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
                               .collection('UserContents')
@@ -469,7 +468,7 @@ class _MyScreenState extends State<MyScreen> {
                                 itemBuilder: (context, index) {
                                   var doc = subcollectionDocs[index];
 
-                                  // Contents Image 있는 문서 참조
+                                  // Contents Image 있는 문서 참조.
                                   var fieldValue = doc.get('ContentsImage');
                                   return GridTile(
                                     child: GestureDetector(
