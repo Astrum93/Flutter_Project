@@ -469,7 +469,8 @@ class _MyScreenState extends State<MyScreen> {
                                   var doc = subcollectionDocs[index];
 
                                   // Contents Image 있는 문서 참조.
-                                  var fieldValue = doc.get('ContentsImage');
+                                  var contentsImage = doc.get('ContentsImage');
+
                                   return GridTile(
                                     child: GestureDetector(
                                       onTap: () {
@@ -480,16 +481,20 @@ class _MyScreenState extends State<MyScreen> {
                                                     const contentsScreen()));
                                       },
                                       // 보여줄 이미지 사이즈
-                                      child: Container(
-                                        width: 250,
-                                        height: 250,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(fieldValue),
+                                      child: Hero(
+                                        tag: contentsImage,
+                                        child: Container(
+                                          width: 250,
+                                          height: 250,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image:
+                                                  NetworkImage(contentsImage),
+                                            ),
                                           ),
+                                          child: const Text(''),
                                         ),
-                                        child: const Text(''),
                                       ),
                                     ),
                                   );
