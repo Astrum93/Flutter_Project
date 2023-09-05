@@ -169,7 +169,7 @@ class _contentsScreenState extends State<contentsScreen> {
 
                               const SizedBox(height: 20),
                               // 음악 플레이어
-                              const musicplayer(),
+                              const music_player(),
                               const SizedBox(height: 15),
 
                               // 콘텐츠 글
@@ -243,8 +243,8 @@ class _contentsScreenState extends State<contentsScreen> {
   }
 }
 
-class musicplayer extends StatelessWidget {
-  const musicplayer({
+class music_player extends StatelessWidget {
+  const music_player({
     super.key,
   });
 
