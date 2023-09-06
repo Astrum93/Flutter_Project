@@ -470,6 +470,8 @@ class _MyScreenState extends State<MyScreen> {
 
                                   // Contents Image 있는 문서 참조.
                                   var contentsImage = doc.get('ContentsImage');
+                                  var contents = doc.get('Contents');
+                                  var id = doc.get('id');
 
                                   return GridTile(
                                     child: GestureDetector(
@@ -478,7 +480,12 @@ class _MyScreenState extends State<MyScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const contentsScreen()));
+                                                    ContentsScreen(
+                                                      contents: contents,
+                                                      contents_image:
+                                                          contentsImage,
+                                                      id: id,
+                                                    )));
                                       },
                                       // 보여줄 이미지 사이즈
                                       child: Hero(
