@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naspace/Screen/ContentsScreen1.dart';
+import 'package:naspace/Widget/MusicPlayer.dart';
 
 import '../Widget/ShortContainerLine.dart';
 
