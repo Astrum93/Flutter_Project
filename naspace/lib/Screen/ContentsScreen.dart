@@ -137,7 +137,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
           const SizedBox(height: 15),
 
           // 콘텐츠 글
-          // 글자 상태에 따라 줄이고 늘리고 작업해야함..
+          // 글자 상태에 따라 줄이고 늘리고 작업해야함
           Container(
             width: MediaQuery.of(context).size.width,
             height: 70,
