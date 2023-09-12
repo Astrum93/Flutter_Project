@@ -138,6 +138,8 @@ class _ContentsScreenState extends State<ContentsScreen> {
 
           // 콘텐츠 글
           // 글자 상태에 따라 줄이고 늘리고 작업해야함
+          // 230912 텍스트 오버플로우 현상 해결
+
           Container(
             width: MediaQuery.of(context).size.width,
             height: 70,
@@ -148,43 +150,45 @@ class _ContentsScreenState extends State<ContentsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        widget.contents,
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      widget.contents,
+                      overflow: TextOverflow.fade,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
-                  ],
+                  ),
                 ),
 
                 // 댓글 더 보기
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          const Text(
-                            "댓글 더보기",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.arrow_drop_down),
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                Container(
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            const Text(
+                              "댓글 더보기",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.arrow_drop_down),
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
