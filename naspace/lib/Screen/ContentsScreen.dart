@@ -138,6 +138,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
 
           // 콘텐츠 글
           // 글자 상태에 따라 줄이고 늘리고 작업해야함
+          // state로 bool값을 주어 다른 위젯을 보이게 할 예정
 
           Container(
             width: MediaQuery.of(context).size.width,
