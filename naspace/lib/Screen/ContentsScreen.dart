@@ -37,10 +37,14 @@ class _ContentsScreenState extends State<ContentsScreen> {
     // TODO: implement initState
     super.initState();
     _getUserInfo();
+    show_more;
   }
 
   // 좋아요
   var isLiked = false;
+
+  // 댓글 더보기
+  var show_more = true;
 
   @override
   Widget build(BuildContext context) {
@@ -153,14 +157,22 @@ class _ContentsScreenState extends State<ContentsScreen> {
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      widget.contents,
-                      overflow: TextOverflow.fade,
-                      maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: show_more
+                        ? Text(
+                            widget.contents,
+                            overflow: TextOverflow.fade,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            //widget.contents,
+                            'test',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
 
@@ -169,7 +181,12 @@ class _ContentsScreenState extends State<ContentsScreen> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            show_more = false;
+                            ContentsScreen;
+                          });
+                        },
                         child: Row(
                           children: [
                             const Text(
