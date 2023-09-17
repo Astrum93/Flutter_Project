@@ -37,7 +37,6 @@ class _ContentsScreenState extends State<ContentsScreen> {
     // TODO: implement initState
     super.initState();
     _getUserInfo();
-    show_more;
   }
 
   // 좋아요
@@ -183,8 +182,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            show_more = false;
-                            ContentsScreen;
+                            show_more = true;
                           });
                         },
                         child: Row(
