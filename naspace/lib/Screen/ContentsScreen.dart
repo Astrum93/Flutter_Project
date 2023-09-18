@@ -179,28 +179,26 @@ class _ContentsScreenState extends State<ContentsScreen> {
                 Container(
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            show_more = true;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            const Text(
-                              "댓글 더보기",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_drop_down),
-                              color: Colors.grey,
-                            ),
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          const Text(
+                            "댓글 더보기",
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                show_more = true;
+                              });
+                              print('test');
+                            },
+                            icon: const Icon(Icons.arrow_drop_down),
+                            color: Colors.grey,
+                          ),
+                        ],
                       )
                     ],
                   ),
