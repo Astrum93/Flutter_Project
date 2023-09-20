@@ -37,6 +37,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
     // TODO: implement initState
     super.initState();
     _getUserInfo();
+    show_more;
   }
 
   // 좋아요
@@ -140,9 +141,6 @@ class _ContentsScreenState extends State<ContentsScreen> {
           const SizedBox(height: 15),
 
           // 콘텐츠 글
-          // 글자 상태에 따라 줄이고 늘리고 작업해야함
-          // state로 bool값을 주어 다른 위젯을 보이게 할 예정
-
           Container(
             width: MediaQuery.of(context).size.width,
             height: 70,
@@ -156,26 +154,19 @@ class _ContentsScreenState extends State<ContentsScreen> {
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: show_more
-                        ? Text(
-                            widget.contents,
-                            overflow: TextOverflow.fade,
-                            maxLines: 1,
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                          )
-                        : const Text(
-                            //widget.contents,
-                            'test',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
+                    child: Text(
+                      widget.contents,
+                      overflow:
+                          show_more ? TextOverflow.fade : TextOverflow.visible,
+                      maxLines: show_more ? 1 : 100,
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
 
-                // 댓글 더 보기
+                // 댓글 더 보기 버튼
                 Container(
                   child: Row(
                     children: [
@@ -191,11 +182,13 @@ class _ContentsScreenState extends State<ContentsScreen> {
                           IconButton(
                             onPressed: () {
                               setState(() {
-                                show_more = true;
+                                show_more = show_more == true ? false : true;
                               });
                               print('test');
                             },
-                            icon: const Icon(Icons.arrow_drop_down),
+                            icon: show_more
+                                ? const Icon(Icons.arrow_drop_down)
+                                : const Icon(Icons.arrow_drop_up),
                             color: Colors.grey,
                           ),
                         ],
