@@ -7,11 +7,14 @@ import '../Widget/ShortContainerLine.dart';
 
 class ContentsScreen extends StatefulWidget {
   final String contents, contents_image, id;
+  final dynamic time;
+
   const ContentsScreen(
       {super.key,
       required this.contents,
       required this.contents_image,
-      required this.id});
+      required this.id,
+      required this.time});
 
   @override
   State<ContentsScreen> createState() => _ContentsScreenState();
@@ -40,8 +43,16 @@ class _ContentsScreenState extends State<ContentsScreen> {
     show_more;
   }
 
-  // 좋아요
+  // timestamp 변환기
+  _changedate() {
+    var changetime = widget.time.toString();
+  }
+
+  // 좋아요 상태
   var isLiked = false;
+
+  // 좋아요 카운트 변수
+  var likecount = 0;
 
   // 댓글 더보기
   var show_more = true;
@@ -94,25 +105,9 @@ class _ContentsScreenState extends State<ContentsScreen> {
                             ],
                           ),
 
-                          // 좋아요 버튼
-                          Row(
-                            children: [
-                              IconButton(
-                                color: Colors.white,
-                                iconSize: 25,
-                                onPressed: () {
-                                  setState(() {
-                                    isLiked = isLiked == true ? false : true;
-                                  });
-                                },
-                                icon: Icon(
-                                  isLiked == false
-                                      ? Icons.favorite_border_outlined
-                                      : Icons.favorite,
-                                  color: Colors.pink,
-                                ),
-                              )
-                            ],
+                          // 날짜
+                          const Row(
+                            children: [],
                           )
                         ],
                       ),
@@ -154,13 +149,20 @@ class _ContentsScreenState extends State<ContentsScreen> {
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      widget.contents,
-                      overflow:
-                          show_more ? TextOverflow.fade : TextOverflow.visible,
-                      maxLines: show_more ? 1 : 100,
-                      style: const TextStyle(
-                        color: Colors.white,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(
+                            widget.contents,
+                            overflow: show_more
+                                ? TextOverflow.fade
+                                : TextOverflow.visible,
+                            maxLines: show_more ? 1 : 100,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

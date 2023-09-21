@@ -33,6 +33,7 @@ class _MyScreenState extends State<MyScreen> {
 
   // 컨텐츠 담을 변수
   List allContents = [];
+
   // Contents 데이터 불러오는 함수
   getContents() async {
     var usercontents = FirebaseFirestore.instance
@@ -472,20 +473,23 @@ class _MyScreenState extends State<MyScreen> {
                                   var contentsImage = doc.get('ContentsImage');
                                   var contents = doc.get('Contents');
                                   var id = doc.get('id');
+                                  var time = doc.get('time');
 
                                   return GridTile(
                                     child: GestureDetector(
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ContentsScreen(
-                                                      contents: contents,
-                                                      contents_image:
-                                                          contentsImage,
-                                                      id: id,
-                                                    )));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ContentsScreen(
+                                                    contents: contents,
+                                                    contents_image:
+                                                        contentsImage,
+                                                    id: id,
+                                                    time: time),
+                                          ),
+                                        );
                                       },
                                       // 보여줄 이미지 사이즈
                                       child: Hero(

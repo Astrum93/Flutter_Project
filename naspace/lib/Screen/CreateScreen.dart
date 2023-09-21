@@ -20,6 +20,9 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+// 좋아요 카운트 변수
+  var likecount = 0;
+
   // Firebase 인증된 uid
   final _uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -159,7 +162,7 @@ class _CreateScreenState extends State<CreateScreen> {
     // 저장한 이미지 url로 변환
     final myurl = await refContentsImage.getDownloadURL();
 
-    // Firestore의 UserInfo에 저장
+    // Firestore의 UserContents 저장
     await _store
         .collection('UserContents')
         .doc(_currentUser!.uid)
@@ -168,7 +171,8 @@ class _CreateScreenState extends State<CreateScreen> {
       'ContentsImage': myurl,
       'Contents': content,
       'time': Timestamp.now(),
-      'id': _uid
+      'id': _uid,
+      'likecount': likecount
     });
 
     //작성 완료 후 입력 필드 초기화
