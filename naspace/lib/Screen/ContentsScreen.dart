@@ -102,7 +102,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
                                 iconSize: 25,
                                 onPressed: () {
                                   setState(() {
-                                    isLiked = true;
+                                    isLiked = isLiked == true ? false : true;
                                   });
                                 },
                                 icon: Icon(
