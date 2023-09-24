@@ -474,6 +474,12 @@ class _MyScreenState extends State<MyScreen> {
                                   var contents = doc.get('Contents');
                                   var id = doc.get('id');
                                   var time = doc.get('time');
+                                  // Timestamp를 DateTime으로 변환
+                                  DateTime dateTime = time.toDate();
+
+                                  // DateTime을 포맷팅
+                                  String formattedDateTime =
+                                      dateTime.toString();
 
                                   return GridTile(
                                     child: GestureDetector(
@@ -487,7 +493,8 @@ class _MyScreenState extends State<MyScreen> {
                                                     contents_image:
                                                         contentsImage,
                                                     id: id,
-                                                    time: time),
+                                                    formattedDateTime:
+                                                        formattedDateTime),
                                           ),
                                         );
                                       },

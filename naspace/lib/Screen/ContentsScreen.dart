@@ -6,15 +6,14 @@ import 'package:naspace/Widget/MusicPlayer.dart';
 import '../Widget/ShortContainerLine.dart';
 
 class ContentsScreen extends StatefulWidget {
-  final String contents, contents_image, id;
-  final dynamic time;
+  final String contents, contents_image, id, formattedDateTime;
 
   const ContentsScreen(
       {super.key,
       required this.contents,
       required this.contents_image,
       required this.id,
-      required this.time});
+      required this.formattedDateTime});
 
   @override
   State<ContentsScreen> createState() => _ContentsScreenState();
@@ -41,11 +40,6 @@ class _ContentsScreenState extends State<ContentsScreen> {
     super.initState();
     _getUserInfo();
     show_more;
-  }
-
-  // timestamp 변환기
-  _changedate() {
-    var changetime = widget.time.toString();
   }
 
   // 좋아요 상태
@@ -106,8 +100,13 @@ class _ContentsScreenState extends State<ContentsScreen> {
                           ),
 
                           // 날짜
-                          const Row(
-                            children: [],
+                          Row(
+                            children: [
+                              Text(
+                                widget.formattedDateTime.substring(0, 10),
+                                style: const TextStyle(color: Colors.grey),
+                              )
+                            ],
                           )
                         ],
                       ),
@@ -115,6 +114,7 @@ class _ContentsScreenState extends State<ContentsScreen> {
                   : const CircularProgressIndicator();
             },
           ),
+          const SizedBox(height: 10),
 
           // 게시물 이미지
           Hero(
