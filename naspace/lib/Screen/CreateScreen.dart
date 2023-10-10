@@ -267,7 +267,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   ),
                                 ),
 
-                                // Home 버튼
+                                // 뒤로가기 버튼
                                 Positioned(
                                   top: 15,
                                   right: 10,
@@ -333,7 +333,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 5),
+                            const SizedBox(height: 20),
 
                             // 컨텐츠 내용 입력.
                             Column(
@@ -351,7 +351,28 @@ class _CreateScreenState extends State<CreateScreen> {
                                     style: const TextStyle(color: Colors.grey),
                                     controller: _contentController,
                                     decoration: const InputDecoration(
-                                      hintText: '내용을 입력해 주세요.',
+                                      hintText: ' 내용을 입력해 주세요.',
+                                      hintStyle: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+                                ),
+
+                                const SizedBox(height: 20),
+
+                                // 해시태그
+                                DottedBorder(
+                                  borderType: BorderType.RRect,
+                                  radius: const Radius.circular(10),
+                                  dashPattern: const [10, 4],
+                                  strokeCap: StrokeCap.round,
+                                  color: Colors.blue.shade400,
+
+                                  // 입력 창
+                                  child: TextField(
+                                    style: const TextStyle(color: Colors.grey),
+                                    controller: _contentController,
+                                    decoration: const InputDecoration(
+                                      hintText: ' 해시태그',
                                       hintStyle: TextStyle(color: Colors.grey),
                                     ),
                                   ),
