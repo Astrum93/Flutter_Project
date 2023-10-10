@@ -148,6 +148,7 @@ class _CreateScreenState extends State<CreateScreen> {
       return;
     }
     final content = _contentController.text;
+    final hashtag = _hashtagController.text;
 
     // 이미지를 Firebase Storage에 업로드
     final fileName = path.basename(pickedImage!.path);
@@ -172,12 +173,14 @@ class _CreateScreenState extends State<CreateScreen> {
       'Contents': content,
       'time': Timestamp.now(),
       'id': _uid,
-      'likecount': likecount
+      'likecount': likecount,
+      'hashtag': hashtag,
     });
 
     //작성 완료 후 입력 필드 초기화
 
     _contentController.clear();
+    _hashtagController.clear();
     setState(() {
       pickedImage = null;
     });
@@ -191,6 +194,9 @@ class _CreateScreenState extends State<CreateScreen> {
 
   // 게시글 내용 컨트롤러
   final TextEditingController _contentController = TextEditingController();
+
+  // 해시태그 내용 컨트롤러
+  final TextEditingController _hashtagController = TextEditingController();
 
   // 컨텐츠 내용 저장할 변수
   String contents = '';
@@ -370,7 +376,7 @@ class _CreateScreenState extends State<CreateScreen> {
                                   // 입력 창
                                   child: TextField(
                                     style: const TextStyle(color: Colors.grey),
-                                    controller: _contentController,
+                                    controller: _hashtagController,
                                     decoration: const InputDecoration(
                                       hintText: ' 해시태그',
                                       hintStyle: TextStyle(color: Colors.grey),
